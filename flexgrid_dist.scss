@@ -1,0 +1,44 @@
+//flex-grid
+
+//helper
+@mixin calc($flxclcpr, $flxclcvl) {
+	#{$flxclcpr}: -webkit-calc(#{$flxclcvl});
+	#{$flxclcpr}: calc(#{$flxclcvl});
+}
+
+
+//grid
+
+//init vars
+$flxclm: 	12 		!default; //$flx-max
+$flxmr: 	1% 		!default; //$flx-margin(-right if bottom is set)
+$flxmb: 	$flxmr	!default; //$flx-margin-bottom 
+
+
+//container
+@mixin flx-container($flxcntclm: $flxclm, $flxcntmr: $flxmr, $flxcntmb: $flxmb) {
+	display: flex;
+	flex-wrap: wrap;
+
+	 @if $flxmb == $flxcntmb {
+		$flxcntmb: $flxcntml;
+	}
+
+	$flxtmclm: 	$flxcntclm 	!global; 
+	$flxtmml: 	$flxcntml	!global; 
+	$flxtmmb: 	$flxcntmb	!global; 
+}
+
+//box
+@mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmml: $flxtmml, $flxtmml: $flxtmml) {
+	$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+
+	@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmml}");
+	margin: 0 $flxtmml $flxtmmb 0;
+
+	@if $flxwth == 0 {
+		margin: 0;
+		display: none;
+		visibility: hidden;
+	}
+}
