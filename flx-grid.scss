@@ -14,6 +14,8 @@ $flxclm: 	12 		!default; //$flx-max
 $flxmr: 	1% 		!default; //$flx-margin(-right if bottom is set)
 $flxmb: 	$flxmr	!default; //$flx-margin-bottom 
 
+$flxlstrw-mode: false 	!default; //enable lastrow-mode
+
 
 //container
 @mixin flx-container($flxcntclm: $flxclm, $flxcntmr: $flxmr, $flxcntmb: $flxmb) {
@@ -21,20 +23,38 @@ $flxmb: 	$flxmr	!default; //$flx-margin-bottom
 	flex-wrap: wrap;
 
 	 @if $flxmb == $flxcntmb {
-		$flxcntmb: $flxcntml;
+		$flxcntmb: $flxcntmr;
 	}
 
 	$flxtmclm: 	$flxcntclm 	!global; 
-	$flxtmml: 	$flxcntml	!global; 
+	$flxtmmr: 	$flxcntmr	!global; 
 	$flxtmmb: 	$flxcntmb	!global; 
 }
 
 //box
-@mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmml: $flxtmml, $flxtmml: $flxtmml) {
-	$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+@mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmmr: $flxtmmr, $flxtmmb: $flxtmmb) {
 
-	@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmml}");
-	margin: 0 $flxtmml $flxtmmb 0;
+	@if $flxwth == 'flex' { 		//enable flex-mode
+		flex: 1;
+	}
+	
+	@if type-of($flxwth) == number { 
+		@if unitless($flxwth) { 	//enable grid-mode
+			$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmr}");	
+		} @else { 					//enable hard-mode
+			flex-basis: $flxwth;
+		}
+	}
+
+	@if $flxlstrw-mode { 			//lastrow-mode
+		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+		$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmr);
+
+		@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");	
+	}
+	
+	margin: 0 $flxtmmr $flxtmmb 0;
 
 	@if $flxwth == 0 {
 		margin: 0;
