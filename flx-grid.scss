@@ -1,4 +1,4 @@
-//flex-grid
+//flx-grid.scss
 
 //helper
 @mixin calc($flxclcpr, $flxclcvl) {
@@ -9,56 +9,89 @@
 
 //grid
 
-//init vars
-$flxclm: 	12 		!default; //$flx-max
-$flxmr: 	1% 		!default; //$flx-margin(-right if bottom is set)
-$flxmb: 	$flxmr	!default; //$flx-margin-bottom 
+//default values
+$flxclm: 	     12 	!default; //flx-grid-units
+$flxmx: 	     1% 	!default; //flx-margin(-x if y is defined)
+$flxmy: 	     $flxmx	!default; //flx-margin-y 
 
-$flxlstrw-mode: false 	!default; //enable lastrow-mode
+$flxst-mode: 	free 	!default; //modes "free" and "last"
 
+
+@mixin flx-settings($flxst-mode: $flxst-mode) {
+	$flxst-mode: $flxst-mode !global;
+}
 
 //container
-@mixin flx-container($flxcntclm: $flxclm, $flxcntmr: $flxmr, $flxcntmb: $flxmb) {
+@mixin flx-container($flxcntclm: $flxclm, $flxcntmx: $flxmx, $flxcntmy: $flxmy) {
 	display: flex;
 	flex-wrap: wrap;
+	box-sizing: border-box;
 
-	 @if $flxmb == $flxcntmb {
-		$flxcntmb: $flxcntmr;
+	 @if $flxmy == $flxcntmy {
+		$flxcntmy: $flxcntmx;
 	}
 
 	$flxtmclm: 	$flxcntclm 	!global; 
-	$flxtmmr: 	$flxcntmr	!global; 
-	$flxtmmb: 	$flxcntmb	!global; 
+	$flxtmmx: 	$flxcntmx	!global; 
+	$flxtmmy: 	$flxcntmy	!global; 
 }
 
 //box
-@mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmmr: $flxtmmr, $flxtmmb: $flxtmmb) {
-
-	@if $flxwth == 'flex' { 		//enable flex-mode
-		flex: 1;
-	}
+@mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmmx: $flxtmmx, $flxtmmy: $flxtmmy) {
 	
-	@if type-of($flxwth) == number { 
-		@if unitless($flxwth) { 	//enable grid-mode
-			$flxtmclc: (($flxwth /$flxtmclm) * 100%);
-			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmr}");	
-		} @else { 					//enable hard-mode
-			flex-basis: $flxwth;
-		}
+	@if $flxtmmx == 0 {
+		$flxtmmx: 0px;
 	}
-
-	@if $flxlstrw-mode { 			//lastrow-mode
-		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
-		$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmr);
-
-		@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");	
-	}
-	
-	margin: 0 $flxtmmr $flxtmmb 0;
 
 	@if $flxwth == 0 {
 		margin: 0;
 		display: none;
-		visibility: hidden;
 	}
+
+	@if $flxwth == 'flex' { // flex-item
+		flex: 1;
+	}
+	
+	@if type-of($flxwth) == number { 
+
+		@if $flxst-mode == "free" {
+			@if unitless($flxwth) { // grid-mode
+				$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmx}");	
+			} @else { // hard-item
+				flex-basis: $flxwth;
+			}
+		}
+
+		@else if $flxst-mode == "last" { // last-mode
+			$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+			$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmx);
+			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");	
+		} @else {
+			@error "mode not defined";
+		}
+	}
+
+	margin: 0 $flxtmmx $flxtmmy 0;
+}
+
+//last item
+@mixin flx-last($flxlst: null) {
+	@if $flxst-mode == "last" {
+		@if $flxlst not null {
+			&:nth-child($flx-test) {
+			margin-right: 0;
+			}
+		} @else {
+			margin-right: 0;
+		}
+	} @else {
+		@error "wrong mode";
+	}
+}
+
+//shift - draft
+@mixin flx-shift($flxshf) {
+	$flxtmclc: (($flxshf /$flxtmclm) * 100%);
+	margin-left: $flxtmclc;
 }
