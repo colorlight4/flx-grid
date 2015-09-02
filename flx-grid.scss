@@ -10,15 +10,17 @@
 //grid
 
 //default values
-$flxclm: 	     12 	!default; //flx-grid-units
-$flxmx: 	     1% 	!default; //flx-margin(-x if y is defined)
-$flxmy: 	     $flxmx	!default; //flx-margin-y 
+$flxclm: 			12 		!default; //flx-grid-units
+$flxmx: 			10px 		!default; //flx-margin(-x if y is defined)
+$flxmy:				$flxmx	!default; //flx-margin-y 
 
-$flxst-mode: 	free 	!default; //modes "free" and "last"
+$flxst-mode: 		last 	!default; //modes "free" and "last"
+$flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" and "column-reverse"
 
-
-@mixin flx-settings($flxst-mode: $flxst-mode) {
+//settings
+@mixin flx-settings($flxst-mode: $flxst-mode, $flxst-direction: $flxst-direction) {
 	$flxst-mode: $flxst-mode !global;
+	$flxst-direction: $flxst-direction !global;
 }
 
 //container
@@ -26,6 +28,8 @@ $flxst-mode: 	free 	!default; //modes "free" and "last"
 	display: flex;
 	flex-wrap: wrap;
 	box-sizing: border-box;
+	flex-direction: $flxst-direction;
+	direction: ltr;
 
 	 @if $flxmy == $flxcntmy {
 		$flxcntmy: $flxcntmx;
@@ -47,43 +51,58 @@ $flxst-mode: 	free 	!default; //modes "free" and "last"
 		margin: 0;
 		display: none;
 	}
-
-	@if $flxwth == 'flex' { // flex-item
-		flex: 1;
-	}
 	
+	@if $flxst-direction == "row" or $flxst-direction == "row-reverse" {
+		$flxtmmd: $flxtmmx !global;
+	} @else {
+		$flxtmmd: $flxtmmy !global;
+	}
+
 	@if type-of($flxwth) == number { 
+		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
 
 		@if $flxst-mode == "free" {
 			@if unitless($flxwth) { // grid-mode
-				$flxtmclc: (($flxwth /$flxtmclm) * 100%);
-				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmx}");	
+				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");	
 			} @else { // hard-item
 				flex-basis: $flxwth;
 			}
-		}
-
-		@else if $flxst-mode == "last" { // last-mode
-			$flxtmclc: (($flxwth /$flxtmclm) * 100%);
-			$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmx);
+		} @else if $flxst-mode == "last" { // last-mode
+			$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd);
 			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");	
 		} @else {
-			@error "mode not defined";
+			@error "flx-mode not defined";
 		}
+	} @else if $flxwth == 'flex' { // flex-item
+		flex: 1;
+	} @else {
+		@error "flxwth not defined";
 	}
 
-	margin: 0 $flxtmmx $flxtmmy 0;
+	@if $flxst-direction == "row" {
+		margin: 0 $flxtmmd $flxtmmy 0;
+		$flxlstd: right !global;
+	} @else if $flxst-direction == "row-reverse"{
+		margin: 0 0 $flxtmmy $flxtmmd;
+		$flxlstd: left !global;
+	} @else if $flxst-direction == "column"{
+		margin: 0 $flxtmmx $flxtmmd 0;
+		$flxlstd: bottom !global;
+	} @else if $flxst-direction == "column-reverse"{
+		margin: $flxtmmd 0 0 $flxtmmx;
+		$flxlstd: top !global;
+	}
 }
 
 //last item
 @mixin flx-last($flxlst: null) {
 	@if $flxst-mode == "last" {
-		@if $flxlst not null {
-			&:nth-child($flx-test) {
-			margin-right: 0;
-			}
+		@if $flxlst == null {
+			margin-#{$flxlstd}: 0;
 		} @else {
-			margin-right: 0;
+			&:nth-child(#{$flxlst}) {
+				margin-#{$flxlstd}: 0;
+			} 
 		}
 	} @else {
 		@error "wrong mode";
@@ -91,7 +110,19 @@ $flxst-mode: 	free 	!default; //modes "free" and "last"
 }
 
 //shift - draft
-@mixin flx-shift($flxshf) {
-	$flxtmclc: (($flxshf /$flxtmclm) * 100%);
-	margin-left: $flxtmclc;
-}
+// @mixin flx-shift($flxshf) {
+
+// $flxshfd: left !global; //row
+// $flxshfd: right !global; //row-r
+// $flxshfd: top !global; //column
+// $flxshfd: bottom !global; //column-r
+
+// 	$flxtmclc: (($flxshf /$flxtmclm) * 100%);
+
+// 	@if $flxst-mode == "free" {
+// 		margin-#{$flxshfd}: $flxtmclc;
+// 	} @else if $flxst-mode == "last" {
+// 		$flxtmspc: ((($flxtmclm - $flxshf) / $flxtmclm ) * $flxtmmx - $flxtmmd);
+// 		@include calc(margin-#{$flxshfd}, "#{$flxtmclc} - #{$flxtmspc}");	
+// 	}
+// }
