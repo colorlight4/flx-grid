@@ -10,12 +10,12 @@
 //grid
 
 //default values
-$flxclm: 			12 		!default; //flx-grid-units
-$flxmx: 			10px 		!default; //flx-margin(-x if y is defined)
-$flxmy:				$flxmx	!default; //flx-margin-y 
+$flxclm: 		12 		!default; //flx-grid-units
+$flxmx: 		10px 		!default; //flx-margin(-x if y is defined)
+$flxmy:			$flxmx		!default; //flx-margin-y 
 
-$flxst-mode: 		last 	!default; //modes "free" and "last"
-$flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" and "column-reverse"
+$flxst-mode: 		grid 		!default; //modes "grid" and "free" 
+$flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" and "column-reverse"
 
 //settings
 @mixin flx-settings($flxst-mode: $flxst-mode, $flxst-direction: $flxst-direction) {
@@ -62,12 +62,12 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
 
 		@if $flxst-mode == "free" {
-			@if unitless($flxwth) { // grid-mode
+			@if unitless($flxwth) { // free-mode
 				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");	
 			} @else { // hard-item
 				flex-basis: $flxwth;
 			}
-		} @else if $flxst-mode == "last" { // last-mode
+		} @else if $flxst-mode == "grid" { // grid-mode
 			$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd);
 			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");	
 		} @else {
@@ -96,7 +96,7 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 
 //last item
 @mixin flx-last($flxlst: null) {
-	@if $flxst-mode == "last" {
+	@if $flxst-mode == "grid" {
 		@if $flxlst == null {
 			margin-#{$flxlstd}: 0;
 		} @else {
@@ -105,7 +105,7 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 			} 
 		}
 	} @else {
-		@error "wrong mode";
+		@error "flx-last requires grid-mode";
 	}
 }
 
