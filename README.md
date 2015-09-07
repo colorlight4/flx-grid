@@ -7,6 +7,11 @@ A small flexbox based grid system.
 - Sass 3.4 +
 
 ## Quick Start Guide
+
+#####Default values:
+- 12 comluns per container
+- 10px margin
+
 #### Container
 Include the `flx-container` mixin to your container element.
 Notice that, because of the nature of flexbox, every element that shall contain grid-elements, requires `flx-container`.
