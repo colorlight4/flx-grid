@@ -31,6 +31,10 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 	flex-direction: $flxst-direction;
 	direction: ltr;
 
+	> :last-child {
+		margin-#{$flxlstd}: 0;
+	}
+
 	 @if $flxmy == $flxcntmy {
 		$flxcntmy: $flxcntmx;
 	}
