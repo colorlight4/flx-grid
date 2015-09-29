@@ -52,7 +52,7 @@ Compiled CSS:
 The last item in each row needs `flx-last` to reset the spacing margin.
 
 ```scss
-.element.last {
+.item.last {
 	@include flx-last;
 }
 ```
