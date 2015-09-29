@@ -31,12 +31,22 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 	flex-direction: $flxst-direction;
 	direction: ltr;
 
-	> :last-child {
-		margin-#{$flxlstd}: 0;
+ 	@if $flxmy == $flxcntmy {
+		$flxcntmy: $flxcntmx;
 	}
 
-	 @if $flxmy == $flxcntmy {
-		$flxcntmy: $flxcntmx;
+	@if $flxst-direction == "row" {
+		$flxlstd: right !global;
+	} @else if $flxst-direction == "row-reverse"{
+		$flxlstd: left !global;
+	} @else if $flxst-direction == "column"{
+		$flxlstd: bottom !global;
+	} @else if $flxst-direction == "column-reverse"{
+		$flxlstd: top !global;
+	}
+
+	> :last-child {
+		margin-#{$flxlstd}: 0;
 	}
 
 	$flxtmclm: 	$flxcntclm 	!global; 
@@ -46,10 +56,6 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 
 //box
 @mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmmx: $flxtmmx, $flxtmmy: $flxtmmy) {
-	
-	@if $flxtmmx == 0 {
-		$flxtmmx: 0px;
-	}
 
 	@if $flxwth == 0 {
 		margin: 0;
@@ -58,8 +64,14 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 	
 	@if $flxst-direction == "row" or $flxst-direction == "row-reverse" {
 		$flxtmmd: $flxtmmx !global;
+	} @else if unit($flxtmmy) == % {
+		@error "Percentage Grid Margin is invalid in column mode"
 	} @else {
 		$flxtmmd: $flxtmmy !global;
+	}
+
+	@if $flxtmmd == 0 {
+		$flxtmmd: 0px;
 	}
 
 	@if type-of($flxwth) == number { 
@@ -85,16 +97,12 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 
 	@if $flxst-direction == "row" {
 		margin: 0 $flxtmmd $flxtmmy 0;
-		$flxlstd: right !global;
 	} @else if $flxst-direction == "row-reverse"{
 		margin: 0 0 $flxtmmy $flxtmmd;
-		$flxlstd: left !global;
 	} @else if $flxst-direction == "column"{
 		margin: 0 $flxtmmx $flxtmmd 0;
-		$flxlstd: bottom !global;
 	} @else if $flxst-direction == "column-reverse"{
 		margin: $flxtmmd 0 0 $flxtmmx;
-		$flxlstd: top !global;
 	}
 }
 
