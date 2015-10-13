@@ -99,6 +99,13 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 			margin-#{$flxlstd}: 0;
 		}
 	}
+
+	//draft
+	// @if $center == true {
+	// 	$center-wrk: (($flxtmclm - $flxwth) / $flxtmclm * 100 / 2);
+	// 	margin-left: #{$center-wrk}%;
+	// 	margin-right: #{$center-wrk}%;
+	// }
 }
 
 //last item
