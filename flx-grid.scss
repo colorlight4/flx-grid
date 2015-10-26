@@ -99,13 +99,6 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 			margin-#{$flxlstd}: 0;
 		}
 	}
-
-	//draft
-	// @if $center == true {
-	// 	$center-wrk: (($flxtmclm - $flxwth) / $flxtmclm * 100 / 2);
-	// 	margin-left: #{$center-wrk}%;
-	// 	margin-right: #{$center-wrk}%;
-	// }
 }
 
 //last item
@@ -124,19 +117,35 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 }
 
 //shift - draft
-// @mixin flx-shift($flxshf) {
+// @mixin flx-shift($flxshf, $flxshffll: false) {
 
-// $flxshfd: left !global; //row
-// $flxshfd: right !global; //row-r
-// $flxshfd: top !global; //column
-// $flxshfd: bottom !global; //column-r
+// 	@if $flxst-direction == "row" {
+// 		$flxshfd: left;
+// 	} @else if $flxst-direction == "row-reverse"{
+// 		$flxshfd: right;
+// 	} @else if $flxst-direction == "column"{
+// 		$flxshfd: top;
+// 	} @else if $flxst-direction == "column-reverse"{
+// 		$flxshfd: bottom;
+// 	}
 
-// 	$flxtmclc: (($flxshf /$flxtmclm) * 100%);
+// 	$flxshfclc: (($flxshf /$flxtmclm) * 100%);
 
-// 	@if $flxst-mode == "free" {
-// 		margin-#{$flxshfd}: $flxtmclc;
+// 	@if $flxshf == "center" {
+// 		$flxshfcnt: (($flxtmclm - $flxwth) / $flxtmclm * 100 / 2);
+// 		margin-left: #{$flxshfcnt}%;
+// 		margin-right: #{$flxshfcnt}%;
+// 	} @else if $flxst-mode == "free" {
+// 		margin-#{$flxshfd}: $flxshfclc;
 // 	} @else if $flxst-mode == "last" {
-// 		$flxtmspc: ((($flxtmclm - $flxshf) / $flxtmclm ) * $flxtmmx - $flxtmmd);
-// 		@include calc(margin-#{$flxshfd}, "#{$flxtmclc} - #{$flxtmspc}");	
+// 		$flxshfspc: ((($flxtmclm - $flxshf) / $flxtmclm ) * $flxtmmx - $flxtmmd);
+// 		@include calc(margin-#{$flxshfd}, "#{$flxshfclc} - #{$flxshfspc}");	
+// 	}
+
+// 	@if $flxshffll == true {
+// 		@if $flxshf == "center" {
+// 		} @else {
+// 			margin-#{$flxlstd}: auto;	
+// 		}
 // 	}
 // }
