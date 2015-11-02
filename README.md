@@ -3,6 +3,15 @@ A small flexbox based grid system.
 
 - **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**
 
+## Features:
+
+- grid mode (classical grid calculator, read the **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**)
+- free mode (*experimental* - supports relative, fix & flexible item widths)
+- nested grids
+- variable flow directions
+- scalable number of gird columns
+- scalable gutter margins (vertical & horizontal)
+
 ## Requirements
 - Sass 3.4 +
 
