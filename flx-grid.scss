@@ -16,6 +16,16 @@ $flxmy:			$flxmx		!default; //flx-margin-y
 $flxst-mode: 		grid 		!default; //modes "grid" and "free"
 $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" and "column-reverse"
 
+//functions
+
+@function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmd: $flxmx) {
+	@return calc((($flxwth /$flxtmclm) * 100%) - ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd));
+}
+
+@function grd-calc-free($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) {
+	@return calc((($flxwth /$flxtmclm) * 100%) - #{$flxtmmd});
+}
+
 //settings
 @mixin flx-settings($flxst-mode: $flxst-mode, $flxst-direction: $flxst-direction) {
 	$flxst-mode: $flxst-mode !global;
@@ -64,13 +74,15 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 
 		@if $flxst-mode == "free" {
 			@if unitless($flxwth) { // free-mode
-				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");
+				// @include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");
+				flex-basis: grd-calc-free($flxwth, $flxtmclm, $flxtmmd);
 			} @else { // hard-item
 				flex-basis: $flxwth;
 			}
 		} @else if $flxst-mode == "grid" { // grid-mode
-			$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd);
-			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");
+			// $flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd);
+			// @include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");
+			flex-basis: grd-calc($flxwth, $flxtmclm, $flxtmmd);
 		} @else {
 			@error "flx-mode not defined";
 		}
@@ -151,10 +163,7 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 // }
 
 //function
-@function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmx: $flxtmmx) {
+// @function grd-calc($flxwth, $flxtmclm: $flxtmclm, $flxtmmd: $flxtmmd) {
 
-	$flxtmclc: (($flxwth /$flxtmclm) * 100%);
-	$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmx);
-
-	@return calc(#{$flxtmclc} - #{$flxtmspc});
-}
+// 	@return calc(((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd) - (($flxwth /$flxtmclm) * 100%));
+// }
