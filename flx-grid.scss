@@ -17,13 +17,12 @@ $flxst-mode: 		grid 		!default; //modes "grid" and "free"
 $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" and "column-reverse"
 
 //functions
-
 @function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmd: $flxmx) { // "grid" mode math
-	@return calc((($flxwth /$flxtmclm) * 100%) - ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd));
+	@return calc((($flxwth /$flxfcclm) * 100%) - ((($flxfcclm - $flxwth) / $flxfcclm ) * $flxfcmd));
 }
 
 @function grd-calc-free($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) { // "free" mode math
-	@return calc((($flxwth /$flxtmclm) * 100%) - #{$flxtmmd});
+	@return calc((($flxwth /$flxfcclm) * 100%) - #{$flxfcmd});
 }
 
 //settings
