@@ -1,10 +1,10 @@
 //flx-grid.scss
 
-//helper
-@mixin calc($flxclcpr, $flxclcvl) {
-	#{$flxclcpr}: -webkit-calc(#{$flxclcvl});
-	#{$flxclcpr}: calc(#{$flxclcvl});
-}
+// //helper
+// @mixin calc($flxclcpr, $flxclcvl) {
+// 	#{$flxclcpr}: -webkit-calc(#{$flxclcvl});
+// 	#{$flxclcpr}: calc(#{$flxclcvl});
+// }
 
 //grid
 
@@ -18,11 +18,11 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 
 //functions
 
-@function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmd: $flxmx) {
+@function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmd: $flxmx) { // "grid" mode math
 	@return calc((($flxwth /$flxtmclm) * 100%) - ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd));
 }
 
-@function grd-calc-free($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) {
+@function grd-calc-free($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) { // "free" mode math
 	@return calc((($flxwth /$flxtmclm) * 100%) - #{$flxtmmd});
 }
 
