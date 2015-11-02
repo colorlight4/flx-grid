@@ -62,7 +62,6 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 	}
 
 	@if type-of($flxwth) == number {
-		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
 		@if $flxst-mode == "free" {
 			@if unitless($flxwth) { // free-mode
 				flex-basis: grd-calc-free($flxwth, $flxtmclm, $flxtmmd);
