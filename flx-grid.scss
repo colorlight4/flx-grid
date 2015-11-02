@@ -11,9 +11,9 @@
 //default values
 $flxclm: 		12 		!default; //flx-grid-units
 $flxmx: 		10px 		!default; //flx-margin(-x if y is defined)
-$flxmy:			$flxmx		!default; //flx-margin-y 
+$flxmy:			$flxmx		!default; //flx-margin-y
 
-$flxst-mode: 		grid 		!default; //modes "grid" and "free" 
+$flxst-mode: 		grid 		!default; //modes "grid" and "free"
 $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" and "column-reverse"
 
 //settings
@@ -34,9 +34,9 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 		$flxcntmy: $flxcntmx;
 	}
 
-	$flxtmclm: 	$flxcntclm 	!global; 
-	$flxtmmx: 	$flxcntmx	!global; 
-	$flxtmmy: 	$flxcntmy	!global; 
+	$flxtmclm: 	$flxcntclm 	!global;
+	$flxtmmx: 	$flxcntmx	!global;
+	$flxtmmy: 	$flxcntmy	!global;
 }
 
 //box
@@ -46,7 +46,7 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 		margin: 0;
 		display: none;
 	}
-	
+
 	@if $flxst-direction == "row" or $flxst-direction == "row-reverse" {
 		$flxtmmd: $flxtmmx !global;
 	} @else if unit($flxtmmy) == % {
@@ -59,18 +59,18 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 		$flxtmmd: 0px;
 	}
 
-	@if type-of($flxwth) == number { 
+	@if type-of($flxwth) == number {
 		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
 
 		@if $flxst-mode == "free" {
 			@if unitless($flxwth) { // free-mode
-				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");	
+				@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");
 			} @else { // hard-item
 				flex-basis: $flxwth;
 			}
 		} @else if $flxst-mode == "grid" { // grid-mode
 			$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd);
-			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");	
+			@include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");
 		} @else {
 			@error "flx-mode not defined";
 		}
@@ -109,7 +109,7 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 		} @else {
 			&:nth-child(#{$flxlst}) {
 				margin-#{$flxlstd}: 0;
-			} 
+			}
 		}
 	} @else {
 		@error "flx-last requires grid-mode";
@@ -139,13 +139,22 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 // 		margin-#{$flxshfd}: $flxshfclc;
 // 	} @else if $flxst-mode == "last" {
 // 		$flxshfspc: ((($flxtmclm - $flxshf) / $flxtmclm ) * $flxtmmx - $flxtmmd);
-// 		@include calc(margin-#{$flxshfd}, "#{$flxshfclc} - #{$flxshfspc}");	
+// 		@include calc(margin-#{$flxshfd}, "#{$flxshfclc} - #{$flxshfspc}");
 // 	}
 
 // 	@if $flxshffll == true {
 // 		@if $flxshf == "center" {
 // 		} @else {
-// 			margin-#{$flxlstd}: auto;	
+// 			margin-#{$flxlstd}: auto;
 // 		}
 // 	}
 // }
+
+//function
+@function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmx: $flxtmmx) {
+
+	$flxtmclc: (($flxwth /$flxtmclm) * 100%);
+	$flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmx);
+
+	@return calc(#{$flxtmclc} - #{$flxtmspc});
+}
