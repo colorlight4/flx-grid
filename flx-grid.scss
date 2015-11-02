@@ -1,28 +1,21 @@
 //flx-grid.scss
 
-// //helper
-// @mixin calc($flxclcpr, $flxclcvl) {
-// 	#{$flxclcpr}: -webkit-calc(#{$flxclcvl});
-// 	#{$flxclcpr}: calc(#{$flxclcvl});
-// }
-
-//grid
 
 //default values
-$flxclm: 		12 		!default; //flx-grid-units
-$flxmx: 		10px 		!default; //flx-margin(-x if y is defined)
-$flxmy:			$flxmx		!default; //flx-margin-y
+$flxclm: 			12 		!default; //flx-grid-units
+$flxmx: 			10px 	!default; //flx-margin(-x if y is defined)
+$flxmy:				$flxmx	!default; //flx-margin-y
 
-$flxst-mode: 		grid 		!default; //modes "grid" and "free"
-$flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" and "column-reverse"
+$flxst-mode: 		grid 	!default; //modes "grid" and "free"
+$flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" and "column-reverse"
 
 //functions
-@function grd-calc($flxwth, $flxtmclm: $flxclm, $flxtmmd: $flxmx) { // "grid" mode math
-	@return calc((($flxwth /$flxfcclm) * 100%) - ((($flxfcclm - $flxwth) / $flxfcclm ) * $flxfcmd));
+@function grd-calc($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) { // "grid" mode math
+	@return calc(#{(($flxwth /$flxfcclm) * 100%)} - #{((($flxfcclm - $flxwth) / $flxfcclm ) * $flxfcmd)});
 }
 
 @function grd-calc-free($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) { // "free" mode math
-	@return calc((($flxwth /$flxfcclm) * 100%) - #{$flxfcmd});
+	@return calc(#{(($flxwth /$flxfcclm) * 100%)} - #{$flxfcmd});
 }
 
 //settings
@@ -58,7 +51,7 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 
 	@if $flxst-direction == "row" or $flxst-direction == "row-reverse" {
 		$flxtmmd: $flxtmmx !global;
-	} @else if unit($flxtmmy) == % {
+	} @else if unit($flxtmmy) == "%" {
 		@error "Percentage grid margin is invalid in column mode"
 	} @else {
 		$flxtmmd: $flxtmmy !global;
@@ -69,18 +62,13 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 	}
 
 	@if type-of($flxwth) == number {
-		$flxtmclc: (($flxwth /$flxtmclm) * 100%);
-
 		@if $flxst-mode == "free" {
 			@if unitless($flxwth) { // free-mode
-				// @include calc(flex-basis, "#{$flxtmclc} - #{$flxtmmd}");
 				flex-basis: grd-calc-free($flxwth, $flxtmclm, $flxtmmd);
 			} @else { // hard-item
 				flex-basis: $flxwth;
 			}
 		} @else if $flxst-mode == "grid" { // grid-mode
-			// $flxtmspc: ((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd);
-			// @include calc(flex-basis, "#{$flxtmclc} - #{$flxtmspc}");
 			flex-basis: grd-calc($flxwth, $flxtmclm, $flxtmmd);
 		} @else {
 			@error "flx-mode not defined";
@@ -126,43 +114,3 @@ $flxst-direction: 	row 		!default; //directions "row", "row-reverse", "column" a
 		@error "flx-last requires grid-mode";
 	}
 }
-
-//shift - draft
-// @mixin flx-shift($flxshf, $flxshffll: false) {
-
-// 	@if $flxst-direction == "row" {
-// 		$flxshfd: left;
-// 	} @else if $flxst-direction == "row-reverse"{
-// 		$flxshfd: right;
-// 	} @else if $flxst-direction == "column"{
-// 		$flxshfd: top;
-// 	} @else if $flxst-direction == "column-reverse"{
-// 		$flxshfd: bottom;
-// 	}
-
-// 	$flxshfclc: (($flxshf /$flxtmclm) * 100%);
-
-// 	@if $flxshf == "center" {
-// 		$flxshfcnt: (($flxtmclm - $flxwth) / $flxtmclm * 100 / 2);
-// 		margin-left: #{$flxshfcnt}%;
-// 		margin-right: #{$flxshfcnt}%;
-// 	} @else if $flxst-mode == "free" {
-// 		margin-#{$flxshfd}: $flxshfclc;
-// 	} @else if $flxst-mode == "last" {
-// 		$flxshfspc: ((($flxtmclm - $flxshf) / $flxtmclm ) * $flxtmmx - $flxtmmd);
-// 		@include calc(margin-#{$flxshfd}, "#{$flxshfclc} - #{$flxshfspc}");
-// 	}
-
-// 	@if $flxshffll == true {
-// 		@if $flxshf == "center" {
-// 		} @else {
-// 			margin-#{$flxlstd}: auto;
-// 		}
-// 	}
-// }
-
-//function
-// @function grd-calc($flxwth, $flxtmclm: $flxtmclm, $flxtmmd: $flxtmmd) {
-
-// 	@return calc(((($flxtmclm - $flxwth) / $flxtmclm ) * $flxtmmd) - (($flxwth /$flxtmclm) * 100%));
-// }
