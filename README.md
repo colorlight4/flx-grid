@@ -52,7 +52,6 @@ Add `flx-item` to any element to define the number of columns it should span.
 Compiled CSS:
 ```css
 .item {
-  flex-basis: -webkit-calc(25% - 7.5px);
   flex-basis: calc(25% - 7.5px);
   margin: 0 10px 10px 0;
 }
