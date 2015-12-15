@@ -58,7 +58,7 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 	}
 
 	@if $flxtmmd == 0 {
-		$flxtmmd: 0px;
+		$flxtmmd: 0px !global;
 	}
 
 	@if type-of($flxwth) == number {
