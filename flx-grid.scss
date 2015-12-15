@@ -145,3 +145,22 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 // 		}
 // 	}
 // }
+
+// rewrite settings draft
+// @mixin flx-settings($flxst-one: null, $flxst-two: null) {
+  
+//   @if $flxst-one {
+//     @if $flxst-one == "grid" or $flxst-one == "free" {
+//       $flxst-mode: $flxst-one !global;
+//     } @else {
+//       $flxst-direction: $flxst-one !global;
+//     } 
+//   }
+//   @if $flxst-two {
+//     @if $flxst-two == "grid" or $flxst-two == "free" {
+//       $flxst-mode: $flxst-two !global;
+//     } @else {
+//       $flxst-direction: $flxst-two !global;
+//     } 
+//   }
+// }
