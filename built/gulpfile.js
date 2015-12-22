@@ -16,7 +16,7 @@ gulp.task('scss', function() {
 	    .pipe(sass())
 	    .on('error', function(err){ console.log(util.colors.red(err.message)); })
 	    .pipe(autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'ie >= 11', 'safari >= 7', 'opera >= 15', 'android >= 4', 'ios >= 7']}))
-	    .pipe(minifyCSS())
+	    // .pipe(minifyCSS())
 	    .pipe(gulp.dest('dist/'))
 	    .pipe(reload({stream:true}));
 });
