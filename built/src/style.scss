@@ -1,6 +1,21 @@
-//flx-grid dev scss
+// flx-grid dev scss
 
-//imports
+// imports
 @import "vendor/normalize.scss";
 @import "../../flx-grid.scss";
+
+
+// wrk styles
+
+.container {
+	margin: 10px;
+	background: red;
+	@include flx-container;
+
+	&.ele-b {
+		background: green;
+	}
+}
+
+
 
