@@ -3,57 +3,55 @@
 // 2016 by Felix Kalkuhl
 
 
-// Variables
+// 1. variables
 //
 
-// lists
+// 1.1 lists
 $flx-modes: 		grid, experimental;
 $flx-directions: 	row, row-reverse, column, column-reverse; // similar to "flex-direction"
 
-// default values
+// 1.2 default values
 $flx-units:			12 				!default; // quantity of grid units
 $flx-margin: 		10px 			!default; // primary gutter (perpendicular to flex direction)
-$flx-margin-b: 		$flx-margin 	!default; // secondary gutter (prallel to flex direction) - if not defined equal to $flx-margin-a
+$flx-margin-b: 		$flx-margin 	!default; // secondary gutter (prallel to flex direction) - if undefined equal to $flx-margin
 
 $flx-mode:			nth($flx-modes, 1) !default; // default "grid"
 $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 
-// funktions
+// 2. functions
 //
 
-// "grid" mode
+// 2.1 "grid" mode
 @function flx-calc($flx-width, $flx-units: $flx-units; $flx-margin: $flx-margin){
-	@return calc(#{(($flx-width / $flc-units) * 100%)} - #{((($flx-units - $flx-width) / $flx-units) * $flx-margin)})
+	@return calc(#{(($flx-width / $flc-units) * 100%)} - #{((($flx-units - $flx-width) / $flx-units) * $flx-margin)});
 }
 
-// "experimental" mode
+// 2.2 "experimental" mode
 @function flx-calc-experimantal($flx-width, $flx-units: $flx-units; $flx-margin: $flx-margin){
-	@return calc(#{(($flx-width / $flc-units) * 100%)} - #{$flx-margin})
+	@return calc(#{(($flx-width / $flc-units) * 100%)} - #{$flx-margin});
 }
 
-// mixins
+// 3. mixins
 //
 
-// settings
-@mixin flx-settings($flx-var-one: null, $flx-var-two: null) {
-	@if $flx-var-one {
-		@each $mode in $flx-modes {
-			@if $flx-var-one == $mode {
-				$flx-mode: $flx-var-one !global;
-				@if $flxst-var-two {
-					$flxst-direction: $flx-var-two !global;		
-				}
-			} @else {
-				$flxst-direction: $flx-var-one !global;	
-				@if $flxst-var-two {
-					$flxst-mode: $flx-var-two !global;		
-				}	
+// 3.1 settings
+@mixin flx-settings($flx-var-a: null, $flx-var-b: null) {
+	@each $mode in $flx-modes {
+		@if $flx-var-a == $mode {
+			$flx-mode: $flx-var-a !global;
+			@if $flxst-var-b {
+				$flxst-direction: $flx-var-b !global;		
 			}
+		} @else {
+			$flxst-direction: $flx-var-a !global;	
+			@if $flxst-var-b {
+				$flxst-mode: $flx-var-b !global;		
+			}	
 		}
 	}
 }
 
-// container
+// 3.2 container
 
 
-// item
+// 3.3 item
