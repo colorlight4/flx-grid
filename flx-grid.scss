@@ -34,24 +34,46 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 // 3. mixins
 //
 
-// 3.1 settings
-@mixin flx-settings($flx-var-a: null, $flx-var-b: null) {
-	@each $mode in $flx-modes {
-		@if $flx-var-a == $mode {
-			$flx-mode: $flx-var-a !global;
-			@if $flxst-var-b {
-				$flxst-direction: $flx-var-b !global;		
-			}
-		} @else {
-			$flxst-direction: $flx-var-a !global;	
-			@if $flxst-var-b {
-				$flxst-mode: $flx-var-b !global;		
-			}	
-		}
-	}
+// 3.1 settings // streichen
+// @mixin flx-settings($flx-a: null, $flx-b: null) {
+// 	@if $flx-a {
+// 		@each $mode in $flx-modes {
+// 			@if $flx-a == $mode {
+// 				$flx-mode: $flx-a !global;
+// 				@if $flx-b {
+// 					$flx-direction: $flx-b !global;		
+// 				}
+// 			} @else {
+// 				$flx-direction: $flx-a !global;	
+// 				@if $flx-b {
+// 					$flx-mode: $flx-b !global;		
+// 				}	
+// 			}
+// 		}
+// 	}
+// }
+
+// 3.1 container
+@mixin flx-container($flx-a: null, $flx-b: null, $flx-c: null, $flx-d: null, $flx-e: null) {
+
 }
 
-// 3.2 container
 
-
-// 3.3 item
+// 3.2 item
+@mixin flx-item($flx-a: null, $flx-b: null, $flx-c: null, $flx-d: null, $flx-e: null) {
+	
+}
+// 3.3 last
+@mixin flx-last($flx-a: null) {
+	@if $flx-mode == "grid" {
+		@if $flx-a {
+			&:nth-child(#{$flxlst}) {
+				margin-#{$flxlstd}: 0;
+			}
+		} @else {
+			margin-#{$flxlstd}: 0;			
+		}
+	} @else {
+		@warn "flx-grid warn: flx-last only nessesary in gird mode";
+	}
+}
