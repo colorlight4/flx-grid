@@ -12,6 +12,11 @@ $flx-directions: 	row, row-reverse, column, column-reverse; // similar to "flex-
 
 $flx-margin-side:	right, left, bottom, top;
 
+$flx-container-helper: ();
+
+$flx-item-helper-a: ();
+$flx-item-helper-b: ();
+
 
 // 1.2 default values
 $flx-units:			12 				!default; // quantity of grid units
@@ -44,21 +49,18 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 
 	@if $flx-var {
 
-		$flx-counter: lenght($flx-var);
-
-
 		@each $var in $flx-var {
 
 			@if type-of($var) == number {
 				@if unitless($var) {
 					$flx-units: $var !global;
 				} @else {
-					$flx-margin: $var !global;
-
-					// zweite nummer?
+					$flx-container-helper: append($flx-container-helper, $var);
 				}
-			} 
+			}
 
+
+// kürzer?
 			@each $direction in $flx-directions {
 				@if $var == $direction {
 					$flx-direction: $var !global;
@@ -71,6 +73,16 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 				}
 			}
 		}
+
+
+//umbenennen
+		@if $flx-container-helper {
+			$flx-margin: nth($flx-container-helper, 1) !global;
+			@if nth($flx-container-helper, 2) {
+				$flx-margin-b: nth($flx-container-helper, 2) !global;
+			}
+		}
+
 	}
 
 	box-sizing: border-box;
@@ -85,16 +97,39 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 
 // dev - 		number 		number 			unit 			unit 		(?) shift
 @mixin flx-item($flx-var: null) {
+
 	@if $flx-var {
-		$flx-counter: lenght($flx-var);
 
 		@each $var in $flx-var {
 
+			@if type-of($var) == number {
+				@if unitless($var) {
+					$flx-item-helper-a: append($flx-item-helper-a, $var);
+				} @else {
+					$flx-item-helper-b: append($flx-item-helper-b, $var);
+				}
+			}
+		}
+
+		@if nth($flx-item-helper-a, 2) {
+			$flx-units: nth($flx-item-helper-a, 2) !global;
 		}
 
 
+//re name alle listen ersteller
+		@if $flx-item-helper-b {
+			$flx-margin: nth($flx-item-helper-b, 1);
+			@if nth($flx-item-helper-b, 2) {
+				$flx-margin-b: nth($flx-item-helper-b, 2);
+			}
+		}
+
+
+//mit den variablen etwas machen
+		flex-basis: grd-calc(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+
 	} @else {
-		@error "flx-grid error: flx-item width undefined";
+		// @error "flx-grid error: flx-item width undefined";
 	}
 }
 
@@ -111,7 +146,7 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 				margin-#{$flx-last}: 0;
 			}
 		} @else {
-			margin-#{$flx-last}: 0;			
+			margin-#{$flx-last}: 0;
 		}
 	} @else {
 		@warn "flx-grid warn: flx-last only nessesary in gird mode";
