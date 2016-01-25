@@ -10,6 +10,9 @@
 $flx-modes: 		grid, experimental;
 $flx-directions: 	row, row-reverse, column, column-reverse; // similar to "flex-direction"
 
+$flx-margin-side:	right, left, bottom, top;
+
+
 // 1.2 default values
 $flx-units:			12 				!default; // quantity of grid units
 $flx-margin: 		10px 			!default; // primary gutter (perpendicular to flex direction)
@@ -34,44 +37,81 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 // 3. mixins
 //
 
-// 3.1 settings // streichen
-// @mixin flx-settings($flx-a: null, $flx-b: null) {
-// 	@if $flx-a {
-// 		@each $mode in $flx-modes {
-// 			@if $flx-a == $mode {
-// 				$flx-mode: $flx-a !global;
-// 				@if $flx-b {
-// 					$flx-direction: $flx-b !global;		
-// 				}
-// 			} @else {
-// 				$flx-direction: $flx-a !global;	
-// 				@if $flx-b {
-// 					$flx-mode: $flx-b !global;		
-// 				}	
-// 			}
-// 		}
-// 	}
-// }
-
 // 3.1 container
-@mixin flx-container($flx-a: null, $flx-b: null, $flx-c: null, $flx-d: null, $flx-e: null) {
 
+// dev - 			number 			unit 		unit 			list 		list
+@mixin flx-container($flx-var: null) {
+
+	@if $flx-var {
+
+		$flx-counter: lenght($flx-var);
+
+
+		@each $var in $flx-var {
+
+			@if type-of($var) == number {
+				@if unitless($var) {
+					$flx-units: $var !global;
+				} @else {
+					$flx-margin: $var !global;
+
+					// zweite nummer?
+				}
+			} 
+
+			@each $direction in $flx-directions {
+				@if $var == $direction {
+					$flx-direction: $var !global;
+				}
+			}
+
+			@each $mode in $flx-modes {
+				@if $var == $mode {
+					$flx-mode: $var !global;
+				}
+			}
+		}
+	}
+
+	box-sizing: border-box;
+	direction: ltr;
+	display: flex;
+	flex-direction: $flx-direction;
+	flex-wrap: wrap;
 }
 
 
 // 3.2 item
-@mixin flx-item($flx-a: null, $flx-b: null, $flx-c: null, $flx-d: null, $flx-e: null) {
-	
+
+// dev - 		number 		number 			unit 			unit 		(?) shift
+@mixin flx-item($flx-var: null) {
+	@if $flx-var {
+		$flx-counter: lenght($flx-var);
+
+		@each $var in $flx-var {
+
+		}
+
+
+	} @else {
+		@error "flx-grid error: flx-item width undefined";
+	}
 }
+
 // 3.3 last
-@mixin flx-last($flx-a: null) {
+@mixin flx-last($flx-var: null) {
 	@if $flx-mode == "grid" {
+		@for $i form 1 through 4 {
+			@if $flx-direction == nth($flx-directions, $i) {
+				$flx-last: nth($flx-margin-side, $i) !global;
+			}
+		}
 		@if $flx-a {
-			&:nth-child(#{$flxlst}) {
-				margin-#{$flxlstd}: 0;
+			&:nth-child(#{$flx-a}) {
+				margin-#{$flx-last}: 0;
 			}
 		} @else {
-			margin-#{$flxlstd}: 0;			
+			margin-#{$flx-last}: 0;			
 		}
 	} @else {
 		@warn "flx-grid warn: flx-last only nessesary in gird mode";
