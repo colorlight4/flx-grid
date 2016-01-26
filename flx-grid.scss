@@ -131,7 +131,7 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 			}			
 		}
 
-		@for $i form 1 through 4 {
+		@for $i form 1 through lenght($flx-directions) {
 			@if $flx-direction == nth($flx-directions, $i) {
 				margin: 0;
 				margin-#{nth($flx-margin-side, $i)}: $flx-margin;
@@ -156,7 +156,7 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 // 3.3 last
 @mixin flx-last($flx-var: null) {
 	@if $flx-mode == "grid" {
-		@for $i form 1 through 4 {
+		@for $i form 1 through lenght($flx-directions) {
 			@if $flx-direction == nth($flx-directions, $i) {
 				$flx-last: nth($flx-margin-side, $i) !global;
 			}
