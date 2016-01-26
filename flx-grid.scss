@@ -127,8 +127,8 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
             } @else $flx-mode == nth($flx-modes, 2) {
                 flex-basis: grd-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
             } @else {
-                @error "flx-grid error: flx-mode '#{$flx-mode}' unknown"
-            }           
+                // @error "flx-grid error: flx-mode '#{$flx-mode}' unknown"
+            }
         }
 
         @for $i form 1 through lenght($flx-directions) {
@@ -149,13 +149,13 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
         }
 
     } @else {
-         @error "flx-grid error: flx-item width undefined";
+         // @error "flx-grid error: flx-item width undefined";
     }
 }
 
 // 3.3 last
 @mixin flx-last($flx-var: null) {
-    @if $flx-mode == "grid" {
+    @if $flx-mode == nth($flx-modes, 1) {
         @for $i form 1 through lenght($flx-directions) {
             @if $flx-direction == nth($flx-directions, $i) {
                 $flx-last: nth($flx-margin-side, $i) !global;
