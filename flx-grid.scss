@@ -10,11 +10,11 @@
 //
 
 // 1.1 lists
-$flx-modes: 		grid, experimental;
-$flx-directions: 	row, row-reverse, column, column-reverse; // similar to "flex-direction"
+$flx-modes:         grid, experimental;
+$flx-directions:    row, row-reverse, column, column-reverse; // similar to "flex-direction"
 
-$flx-margin-side:	right, left, bottom, top;
-$flx-margin-b-side:	bottom, bottom, right, left;
+$flx-margin-side:   right, left, bottom, top;
+$flx-margin-b-side: bottom, bottom, right, left;
 
 
 $flx-container-helper: ();
@@ -24,24 +24,24 @@ $flx-item-helper-b: ();
 
 
 // 1.2 default values
-$flx-units:			12 				!default; // quantity of grid units
-$flx-margin: 		10px 			!default; // primary gutter (perpendicular to flex direction)
-$flx-margin-b: 		$flx-margin 	!default; // secondary gutter (prallel to flex direction) - if undefined equal to $flx-margin
+$flx-units:         12              !default; // quantity of grid units
+$flx-margin:        10px            !default; // primary gutter (perpendicular to flex direction)
+$flx-margin-b:      $flx-margin     !default; // secondary gutter (prallel to flex direction) - if undefined equal to $flx-margin
 
-$flx-mode:			nth($flx-modes, 1) !default; // default "grid"
-$flx-direction:		nth($flx-directions, 1) !default; // default "row"
+$flx-mode:          nth($flx-modes, 1) !default; // default "grid"
+$flx-direction:     nth($flx-directions, 1) !default; // default "row"
 
 // 2. functions
 //
 
 // 2.1 "grid" mode
 @function flx-calc($flx-width, $flx-units: $flx-units; $flx-margin: $flx-margin){
-	@return calc(#{(($flx-width / $flc-units) * 100%)} - #{((($flx-units - $flx-width) / $flx-units) * $flx-margin)});
+    @return calc(#{(($flx-width / $flc-units) * 100%)} - #{((($flx-units - $flx-width) / $flx-units) * $flx-margin)});
 }
 
 // 2.2 "experimental" mode
 @function flx-calc-experimental($flx-width, $flx-units: $flx-units; $flx-margin: $flx-margin){
-	@return calc(#{(($flx-width / $flc-units) * 100%)} - #{$flx-margin});
+    @return calc(#{(($flx-width / $flc-units) * 100%)} - #{$flx-margin});
 }
 
 // 3. mixins
@@ -49,126 +49,126 @@ $flx-direction:		nth($flx-directions, 1) !default; // default "row"
 
 // 3.1 container
 
-// dev - 			number 			unit 		unit 			list 		list
+// dev -            number          unit        unit            list        list
 @mixin flx-container($flx-var: null) {
-	@if $flx-var {
-		@each $var in $flx-var {
-			@if type-of($var) == number {
-				@if unitless($var) {
-					$flx-units: $var !global;
-				} @else {
-					$flx-container-helper: append($flx-container-helper, $var);
-				}
-			}
-			@each $direction in $flx-directions { // kürzer?
-				@if $var == $direction {
-					$flx-direction: $var !global;
-				}
-			}
-			@each $mode in $flx-modes { // kürzer?
-				@if $var == $mode {
-					$flx-mode: $var !global;
-				}
-			}
-		}
-		@if $flx-container-helper { //umbenennen
-			$flx-margin: nth($flx-container-helper, 1) !global;
-			@if nth($flx-container-helper, 2) {
-				$flx-margin-b: nth($flx-container-helper, 2) !global;
-			}
-		}
-	}
-	box-sizing: border-box;
-	direction: ltr;
-	display: flex;
-	flex-direction: $flx-direction;
-	flex-wrap: wrap;
+    @if $flx-var {
+        @each $var in $flx-var {
+            @if type-of($var) == number {
+                @if unitless($var) {
+                    $flx-units: $var !global;
+                } @else {
+                    $flx-container-helper: append($flx-container-helper, $var);
+                }
+            }
+            @each $direction in $flx-directions { // kürzer?
+                @if $var == $direction {
+                    $flx-direction: $var !global;
+                }
+            }
+            @each $mode in $flx-modes { // kürzer?
+                @if $var == $mode {
+                    $flx-mode: $var !global;
+                }
+            }
+        }
+        @if $flx-container-helper { //umbenennen
+            $flx-margin: nth($flx-container-helper, 1) !global;
+            @if nth($flx-container-helper, 2) {
+                $flx-margin-b: nth($flx-container-helper, 2) !global;
+            }
+        }
+    }
+    box-sizing: border-box;
+    direction: ltr;
+    display: flex;
+    flex-direction: $flx-direction;
+    flex-wrap: wrap;
 }
 
 
 // 3.2 item
 
-// dev - 		number 		number 			unit 			unit 		(?) shift
+// dev -        number      number          unit            unit        (?) shift
 @mixin flx-item($flx-var: null) {
-	@if $flx-var {
+    @if $flx-var {
 
-		@each $var in $flx-var {
-			@if $var == "flex" {
-				$flx-item-helper-a: append($flx-item-helper-a, $var);
-			}
-			@if type-of($var) == number {
-				@if unitless($var) {
-					$flx-item-helper-a: append($flx-item-helper-a, $var);
-				} @else {
-					$flx-item-helper-b: append($flx-item-helper-b, $var);
-				}
-			}
-		}
+        @each $var in $flx-var {
+            @if $var == "flex" {
+                $flx-item-helper-a: append($flx-item-helper-a, $var);
+            }
+            @if type-of($var) == number {
+                @if unitless($var) {
+                    $flx-item-helper-a: append($flx-item-helper-a, $var);
+                } @else {
+                    $flx-item-helper-b: append($flx-item-helper-b, $var);
+                }
+            }
+        }
 
-		@if nth($flx-item-helper-a, 2) {
-			$flx-units: nth($flx-item-helper-a, 2) !global;
-		}
+        @if nth($flx-item-helper-a, 2) {
+            $flx-units: nth($flx-item-helper-a, 2) !global;
+        }
 
-		@if $flx-item-helper-b { //re name alle listen ersteller
-			$flx-margin: nth($flx-item-helper-b, 1);
-			@if nth($flx-item-helper-b, 2) {
-				$flx-margin-b: nth($flx-item-helper-b, 2);
-			}
-		}
+        @if $flx-item-helper-b { //re name alle listen ersteller
+            $flx-margin: nth($flx-item-helper-b, 1);
+            @if nth($flx-item-helper-b, 2) {
+                $flx-margin-b: nth($flx-item-helper-b, 2);
+            }
+        }
 
-		@if nth($flx-item-helper-a, 1) == "flex" {
-			flex: 1;
-		} @else if nth($flx-item-helper-a, 1) == 0{
-			display: none;
-			margin: 0;
-		} @else {
-			@if $flx-mode == nth($flx-modes, 1) {
-				flex-basis: grd-calc(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
-			} @else $flx-mode == nth($flx-modes, 2) {
-				flex-basis: grd-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
-			} @else {
-				@error "flx-grid error: flx-mode '#{$flx-mode}' unknown"
-			}			
-		}
+        @if nth($flx-item-helper-a, 1) == "flex" {
+            flex: 1;
+        } @else if nth($flx-item-helper-a, 1) == 0{
+            display: none;
+            margin: 0;
+        } @else {
+            @if $flx-mode == nth($flx-modes, 1) {
+                flex-basis: grd-calc(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+            } @else $flx-mode == nth($flx-modes, 2) {
+                flex-basis: grd-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+            } @else {
+                @error "flx-grid error: flx-mode '#{$flx-mode}' unknown"
+            }           
+        }
 
-		@for $i form 1 through lenght($flx-directions) {
-			@if $flx-direction == nth($flx-directions, $i) {
-				margin: 0;
-				margin-#{nth($flx-margin-side, $i)}: $flx-margin;
-				margin-#{nth($flx-margin-b-side, $i)}: $flx-margin-b;
+        @for $i form 1 through lenght($flx-directions) {
+            @if $flx-direction == nth($flx-directions, $i) {
+                margin: 0;
+                margin-#{nth($flx-margin-side, $i)}: $flx-margin;
+                margin-#{nth($flx-margin-b-side, $i)}: $flx-margin-b;
 
-				@if $flx-mode == nth($flx-modes, 1) {
-					&:last-child {
-						margin-#{nth($flx-margin-side, $i)}: 0;
-					}
-				}
-				@if $flx-direction == nth($flx-directions, 3) or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
-					@warn "flx-grid warn: percentage margin in '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
-				}
-			}
-		}
+                @if $flx-mode == nth($flx-modes, 1) {
+                    &:last-child {
+                        margin-#{nth($flx-margin-side, $i)}: 0;
+                    }
+                }
+                @if $flx-direction == nth($flx-directions, 3) or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
+                    @warn "flx-grid warn: percentage margin in aside use '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
+                }
+            }
+        }
 
-	} @else {
-		 @error "flx-grid error: flx-item width undefined";
-	}
+    } @else {
+         @error "flx-grid error: flx-item width undefined";
+    }
 }
 
 // 3.3 last
 @mixin flx-last($flx-var: null) {
-	@if $flx-mode == "grid" {
-		@for $i form 1 through lenght($flx-directions) {
-			@if $flx-direction == nth($flx-directions, $i) {
-				$flx-last: nth($flx-margin-side, $i) !global;
-			}
-		}
-		@if $flx-a {
-			&:nth-child(#{$flx-a}) {
-				margin-#{$flx-last}: 0;
-			}
-		} @else {
-			margin-#{$flx-last}: 0;
-		}
-	} @else {
-		@warn "flx-grid warn: flx-last only nessesary in gird mode";
-	}
+    @if $flx-mode == "grid" {
+        @for $i form 1 through lenght($flx-directions) {
+            @if $flx-direction == nth($flx-directions, $i) {
+                $flx-last: nth($flx-margin-side, $i) !global;
+            }
+        }
+        @if $flx-a {
+            &:nth-child(#{$flx-a}) {
+                margin-#{$flx-last}: 0;
+            }
+        } @else {
+            margin-#{$flx-last}: 0;
+        }
+    } @else {
+        @warn "flx-grid warn: flx-last only nessesary in gird mode";
+    }
 }
