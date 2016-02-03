@@ -1,24 +1,21 @@
-// flx-grid v1.0
+// flx-grid v1.0b
 //
 // 2016 by Felix Kalkuhl
 
-
-// auf spaces umstellen
-// alle "fixen" angaben rausnehemen
 
 // 1. variables
 //
 
 // 1.1 lists
+// 1.1.1 value options
 $flx-modes:         grid, experimental;
 $flx-directions:    row, row-reverse, column, column-reverse; // similar to "flex-direction"
 
 $flx-margin-side:   right, left, bottom, top;
 $flx-margin-b-side: bottom, bottom, right, left;
 
-
+// 1.1.2 helper lists
 $flx-container-helper: ();
-
 $flx-item-helper-a: ();
 $flx-item-helper-b: ();
 
@@ -48,8 +45,6 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
 //
 
 // 3.1 container
-
-// dev -            number          unit        unit            list        list
 @mixin flx-container($flx-var: null) {
     @if $flx-var {
         @each $var in $flx-var {
@@ -85,13 +80,9 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
     flex-wrap: wrap;
 }
 
-
 // 3.2 item
-
-// dev -        number      number          unit            unit        (?) shift
-@mixin flx-item($flx-var: null) {
+@mixin flx-item($flx-var: null) { // shift?
     @if $flx-var {
-
         @each $var in $flx-var {
             @if $var == "flex" {
                 $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
@@ -104,18 +95,15 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                 }
             }
         }
-
         @if length($flx-item-helper-a) >= 2 {
             $flx-units: nth($flx-item-helper-a, 2) !global;
         }
-
         @if length($flx-item-helper-b) >= 1 { //re name alle listen ersteller
             $flx-margin: nth($flx-item-helper-b, 1) !global;
             @if length($flx-item-helper-b) >= 2 {
                 $flx-margin-b: nth($flx-item-helper-b, 2) !global;
             }
         }
-
         @if nth($flx-item-helper-a, 1) == "flex" {
             flex: 1;
         } @else if nth($flx-item-helper-a, 1) == 0 {
@@ -130,7 +118,6 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                 @error "flx-grid error: flx-mode '#{$flx-mode}' unknown"
             }
         }
-
         @for $i from 1 through length($flx-directions) {
             @if $flx-direction == nth($flx-directions, $i) {
                 margin: 0;
@@ -147,7 +134,6 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                 }
             }
         }
-
     } @else {
         @error "flx-grid error: flx-item width undefined";
     }
