@@ -71,9 +71,9 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                 }
             }
         }
-        @if $flx-container-helper { //umbenennen
+        @if length($flx-container-helper) >= 1 { //umbenennen
             $flx-margin: nth($flx-container-helper, 1) !global;
-            @if nth($flx-container-helper, 2) {
+            @if length($flx-container-helper) >= 2 {
                 $flx-margin-b: nth($flx-container-helper, 2) !global;
             }
         }
@@ -105,20 +105,20 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
             }
         }
 
-        @if nth($flx-item-helper-a, 2) {
+        @if length($flx-item-helper-a) >= 2 {
             $flx-units: nth($flx-item-helper-a, 2) !global;
         }
 
-        @if $flx-item-helper-b { //re name alle listen ersteller
+        @if length($flx-item-helper-b) >= 1 { //re name alle listen ersteller
             $flx-margin: nth($flx-item-helper-b, 1);
-            @if nth($flx-item-helper-b, 2) {
+            @if length($flx-item-helper-b) >= 2 {
                 $flx-margin-b: nth($flx-item-helper-b, 2);
             }
         }
 
         @if nth($flx-item-helper-a, 1) == "flex" {
             flex: 1;
-        } @else if nth($flx-item-helper-a, 1) == 0{
+        } @else if nth($flx-item-helper-a, 1) == 0 {
             display: none;
             margin: 0;
         } @else {
@@ -155,13 +155,8 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
 
 // 3.3 last
 @mixin flx-last($flx-var: null) {
-<<<<<<< HEAD
     @if $flx-mode == "grid" {
-        @for $i from 1 through lenght($flx-directions) {
-=======
-    @if $flx-mode == nth($flx-modes, 1) {
         @for $i form 1 through lenght($flx-directions) {
->>>>>>> ce0ef340f2bd24aca3b338ce8632413a84fe84fb
             @if $flx-direction == nth($flx-directions, $i) {
                 $flx-last: nth($flx-margin-side, $i) !global;
             }
