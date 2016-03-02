@@ -2,6 +2,7 @@
 A small flexbox based grid system.
 
 - **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**
+- ~~Documentation~~ *(coming soon)*
 
 ## Features:
 
@@ -14,7 +15,6 @@ A small flexbox based grid system.
 
 ## Requirements
 - Sass 3.4 +
-
 - [flexbox support](http://caniuse.com/#search=flex)
 - [calc() support](http://caniuse.com/#search=calc)
 
