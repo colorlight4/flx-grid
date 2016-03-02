@@ -6,7 +6,7 @@ A small flexbox based grid system.
 ## Features:
 
 - grid mode (classical grid calculator, read the **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**)
-- free mode (*experimental* - supports relative, fix & flexible item widths)
+- experimental mode (*caution: might be buggy* - supports relative, fix & flexible item widths)
 - nested grids
 - variable flow directions
 - scalable number of gird columns
@@ -14,6 +14,9 @@ A small flexbox based grid system.
 
 ## Requirements
 - Sass 3.4 +
+
+- [flexbox support](http://caniuse.com/#search=flex)
+- [calc() support](http://caniuse.com/#search=calc)
 
 ## Quick Start Guide
 
