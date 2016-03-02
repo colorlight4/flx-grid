@@ -21,7 +21,7 @@ A small flexbox based grid system.
 ## Quick Start Guide
 
 #####Default values:
-- 12 comluns per container
+- 12 columns per container
 - 10px margin
 
 #### Container
