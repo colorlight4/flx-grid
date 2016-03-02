@@ -1,105 +1,86 @@
-//flx-grid.scss
+// flx-grid v1.0b
+//
+// 2016 by Felix Kalkuhl
 
 
-//default values
-$flxclm: 			12 		!default; //flx-grid-units
-$flxmx: 			10px 	!default; //flx-margin(-x if y is defined)
-$flxmy:				$flxmx	!default; //flx-margin-y
+// 1. variables
+//
 
-$flxst-mode: 		grid 	!default; //modes "grid" and "free"
-$flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" and "column-reverse"
+// 1.1 lists
+// 1.1.1 value options
+$flx-modes:         grid, experimental;
+$flx-directions:    row, row-reverse, column, column-reverse; // similar to "flex-direction"
 
-//functions
-@function grd-calc($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) { // "grid" mode math
-	@return calc(#{(($flxwth /$flxfcclm) * 100%)} - #{((($flxfcclm - $flxwth) / $flxfcclm ) * $flxfcmd)});
+$flx-margin-side:   right, left, bottom, top;
+$flx-margin-b-side: bottom, bottom, right, left;
+
+// 1.1.2 helper lists
+$flx-container-helper: ();
+$flx-item-helper-a: ();
+$flx-item-helper-b: ();
+
+
+// 1.2 default values
+$flx-units:         12              !default; // quantity of grid units
+$flx-margin:        10px            !default; // primary gutter (perpendicular to flex direction)
+$flx-margin-b:      $flx-margin     !default; // secondary gutter (prallel to flex direction) - if undefined equal to $flx-margin
+
+$flx-mode:          nth($flx-modes, 1) !default; // default "grid"
+$flx-direction:     nth($flx-directions, 1) !default; // default "row"
+
+// 2. functions
+//
+
+// 2.1 "grid" mode
+@function flx-calc($flx-width, $flx-units: $flx-units, $flx-margin: $flx-margin){
+    @return calc(#{(($flx-width / $flx-units) * 100%)} - #{((($flx-units - $flx-width) / $flx-units) * $flx-margin)});
 }
 
-@function grd-calc-free($flxwth, $flxfcclm: $flxclm, $flxfcmd: $flxmx) { // "free" mode math
-	@return calc(#{(($flxwth /$flxfcclm) * 100%)} - #{$flxfcmd});
+// 2.2 "experimental" mode
+@function flx-calc-experimental($flx-width, $flx-units: $flx-units, $flx-margin: $flx-margin){
+    @return calc(#{(($flx-width / $flx-units) * 100%)} - #{$flx-margin});
 }
 
-//settings
-@mixin flx-settings($flxst-mode: $flxst-mode, $flxst-direction: $flxst-direction) {
-	$flxst-mode: $flxst-mode !global;
-	$flxst-direction: $flxst-direction !global;
+// 3. mixins
+//
+
+// 3.1 container
+@mixin flx-container($flx-var: null) {
+    @if $flx-var {
+        @each $var in $flx-var {
+            @if type-of($var) == number {
+                @if unitless($var) {
+                    $flx-units: $var !global;
+                } @else {
+                    $flx-container-helper: append($flx-container-helper, $var, 'comma') !global;
+                }
+            }
+            @each $direction in $flx-directions { // kürzer?
+                @if $var == $direction {
+                    $flx-direction: $var !global;
+                }
+            }
+            @each $mode in $flx-modes { // kürzer?
+                @if $var == $mode {
+                    $flx-mode: $var !global;
+                }
+            }
+        }
+        @if length($flx-container-helper) >= 1 { //umbenennen
+            $flx-margin: nth($flx-container-helper, 1) !global;
+            @if length($flx-container-helper) >= 2 {
+                $flx-margin-b: nth($flx-container-helper, 2) !global;
+            }
+        }
+    }
+    box-sizing: border-box;
+    direction: ltr;
+    display: flex;
+    flex-direction: $flx-direction;
+    flex-wrap: wrap;
 }
 
-//container
-@mixin flx-container($flxcntclm: $flxclm, $flxcntmx: $flxmx, $flxcntmy: $flxmy) {
-	display: flex;
-	flex-wrap: wrap;
-	box-sizing: border-box;
-	flex-direction: $flxst-direction;
-	direction: ltr;
-
- 	@if $flxmy == $flxcntmy {
-		$flxcntmy: $flxcntmx;
-	}
-
-	$flxtmclm: 	$flxcntclm 	!global;
-	$flxtmmx: 	$flxcntmx	!global;
-	$flxtmmy: 	$flxcntmy	!global;
-}
-
-//box
-@mixin flx-item($flxwth, $flxtmclm: $flxtmclm, $flxtmmx: $flxtmmx, $flxtmmy: $flxtmmy) {
-
-	@if $flxwth == 0 {
-		margin: 0;
-		display: none;
-	}
-
-	@if $flxst-direction == "row" or $flxst-direction == "row-reverse" {
-		$flxtmmd: $flxtmmx !global;
-	} @else if unit($flxtmmy) == "%" {
-		@error "Percentage grid margin is invalid in column mode"
-	} @else {
-		$flxtmmd: $flxtmmy !global;
-	}
-
-	@if $flxtmmd == 0 {
-		$flxtmmd: 0px !global;
-	}
-
-	@if type-of($flxwth) == number {
-		@if $flxst-mode == "free" {
-			@if unitless($flxwth) { // free-mode
-				flex-basis: grd-calc-free($flxwth, $flxtmclm, $flxtmmd);
-			} @else { // hard-item
-				flex-basis: $flxwth;
-			}
-		} @else if $flxst-mode == "grid" { // grid-mode
-			flex-basis: grd-calc($flxwth, $flxtmclm, $flxtmmd);
-		} @else {
-			@error "flx-mode not defined";
-		}
-	} @else if $flxwth == 'flex' { // flex-item
-		flex: 1;
-	} @else {
-		@error "flxwth not defined";
-	}
-
-	@if $flxst-direction == "row" {
-		margin: 0 $flxtmmd $flxtmmy 0;
-		$flxlstd: right !global;
-	} @else if $flxst-direction == "row-reverse"{
-		margin: 0 0 $flxtmmy $flxtmmd;
-		$flxlstd: left !global;
-	} @else if $flxst-direction == "column"{
-		margin: 0 $flxtmmx $flxtmmd 0;
-		$flxlstd: bottom !global;
-	} @else if $flxst-direction == "column-reverse"{
-		margin: $flxtmmd 0 0 $flxtmmx;
-		$flxlstd: top !global;
-	}
-
-	@if $flxst-mode == "grid" {
-		&:last-child {
-			margin-#{$flxlstd}: 0;
-		}
-	}
-}
-
+<<<<<<< HEAD
 //last item
 @mixin flx-last($flxlst: null) {
 	@if $flxst-mode == "grid" {
@@ -114,3 +95,83 @@ $flxst-direction: 	row 	!default; //directions "row", "row-reverse", "column" an
 		@error "flx-last requires grid-mode";
 	}
 }
+=======
+// 3.2 item
+@mixin flx-item($flx-var: null) { // shift?
+    @if $flx-var {
+        @each $var in $flx-var {
+            @if $var == "flex" {
+                $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+            }
+            @if type-of($var) == number {
+                @if unitless($var) {
+                    $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+                } @else {
+                    $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
+                }
+            }
+        }
+        @if length($flx-item-helper-a) >= 2 {
+            $flx-units: nth($flx-item-helper-a, 2) !global;
+        }
+        @if length($flx-item-helper-b) >= 1 { //re name alle listen ersteller
+            $flx-margin: nth($flx-item-helper-b, 1) !global;
+            @if length($flx-item-helper-b) >= 2 {
+                $flx-margin-b: nth($flx-item-helper-b, 2) !global;
+            }
+        }
+        @if nth($flx-item-helper-a, 1) == "flex" {
+            flex: 1;
+        } @else if nth($flx-item-helper-a, 1) == 0 {
+            display: none;
+            margin: 0;
+        } @else {
+            @if $flx-mode == nth($flx-modes, 1) {
+                flex-basis: flx-calc(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+            } @else if $flx-mode == nth($flx-modes, 2) {
+                flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+            } @else {
+                @error "flx-grid error: flx-mode '#{$flx-mode}' unknown";
+            }
+        }
+        @for $i from 1 through length($flx-directions) {
+            @if $flx-direction == nth($flx-directions, $i) {
+                margin: 0;
+                margin-#{nth($flx-margin-side, $i)}: $flx-margin;
+                margin-#{nth($flx-margin-b-side, $i)}: $flx-margin-b;
+
+                @if $flx-mode == nth($flx-modes, 1) {
+                    &:last-child {
+                        margin-#{nth($flx-margin-side, $i)}: 0;
+                    }
+                }
+                @if $flx-direction == nth($flx-directions, 3) or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
+                    @warn "flx-grid warn: percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
+                }
+            }
+        }
+    } @else {
+        @error "flx-grid error: flx-item width undefined";
+    }
+}
+
+// 3.3 last
+@mixin flx-last($flx-var: null) {
+    @if $flx-mode == "grid" {
+        @for $i from 1 through lenght($flx-directions) {
+            @if $flx-direction == nth($flx-directions, $i) {
+                $flx-last: nth($flx-margin-side, $i) !global;
+            }
+        }
+        @if $flx-var {
+            &:nth-child(#{$flx-var}) {
+                margin-#{$flx-last}: 0;
+            }
+        } @else {
+            margin-#{$flx-last}: 0;
+        }
+    } @else {
+        @warn "flx-grid warn: flx-last only nessesary in gird mode";
+    }
+}
+>>>>>>> dev
