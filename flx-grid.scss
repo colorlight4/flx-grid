@@ -129,7 +129,7 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                         margin-#{nth($flx-margin-side, $i)}: 0;
                     }
                 }
-                @if $flx-direction == nth($flx-directions, 3) or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
+                @if $flx-direction == nth($flx-directions, 3) and unit($flx-margin) == "%" or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
                     @warn "flx-grid warn/ percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
                 }
             }
@@ -142,7 +142,7 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
 // 3.3 last
 @mixin flx-last($flx-var: null) {
     @if $flx-mode == "grid" {
-        @for $i from 1 through lenght($flx-directions) {
+        @for $i from 1 through length($flx-directions) {
             @if $flx-direction == nth($flx-directions, $i) {
                 $flx-last: nth($flx-margin-side, $i) !global;
             }
