@@ -115,7 +115,7 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
             } @else if $flx-mode == nth($flx-modes, 2) {
                 flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
             } @else {
-                @error "flx-grid error/ flx-mode '#{$flx-mode}' unknown";
+                @error "flx-grid error/ flx-mode '#{$flx-mode}' unknown"; // fliegt nicht auf die fresse da die variable gar nicht geschrieben wird
             }
         }
         @for $i from 1 through length($flx-directions) {
