@@ -7,7 +7,7 @@ A small flexbox based grid system.
 ## Features:
 
 - grid mode (classical grid calculator, read the **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**)
-- experimental mode (*caution: might be buggy* - supports relative, fix & flexible item widths)
+- experimental mode (*caution: safety not guaranteed* - supports relative, fix & flexible item widths)
 - nested grids
 - variable flow directions
 - scalable number of gird columns
