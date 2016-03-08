@@ -85,30 +85,17 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
 @mixin flx-item($flx-var: null) {
     @if $flx-var {
 
-        @if $flx-mode == nth($flx-modes, 1) {
-            @each $var in $flx-var {
-               @if type-of($var) == number {
-                    @if unitless($var) {
-                        $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
-                    } @else {
-                        $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
-                    }
-                }
-            }
-        } @else if $flx-mode == nth($flx-modes, 2) {
-            $first: true;
-            @each $var in $flx-var {
-                @if $first {
+        $first: true;
+        @each $var in $flx-var {
+
+            @if $flx-mode == nth($flx-modes, 2) and $first {
+                $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+                $first: false;
+            } @else if type-of($var) == number {
+                @if unitless($var) {
                     $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
-                    $first: false;
                 } @else {
-                    @if type-of($var) == number {
-                        @if unitless($var) {
-                            $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
-                        } @else {
-                            $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
-                        }
-                    }
+                    $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
                 }
             }
         }
