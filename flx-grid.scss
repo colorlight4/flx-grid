@@ -130,17 +130,11 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
             @if $flx-mode == nth($flx-modes, 1) {
                 flex-basis: flx-calc(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
             } @else if $flx-mode == nth($flx-modes, 2) {
-<<<<<<< HEAD
-                flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
-            } @else {
-                @error "flx-grid error/ flx-mode '#{$flx-mode}' unknown"; // fliegt nicht auf die fresse da die variable gar nicht geschrieben wird
-=======
                 @if nth($flx-item-helper-a, 1) == "flex" {
                    flex: 1;
                 } @else {
                     flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
                 }
->>>>>>> dev
             }
         }
 
@@ -156,11 +150,7 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                     }
                 }
                 @if $flx-direction == nth($flx-directions, 3) and unit($flx-margin) == "%" or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
-<<<<<<< HEAD
                     @warn "flx-grid warn/ percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
-=======
-                    @warn "flx-grid warn: percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
->>>>>>> dev
                 }
             }
         }
