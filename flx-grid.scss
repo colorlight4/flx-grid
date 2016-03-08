@@ -150,12 +150,12 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                     }
                 }
                 @if $flx-direction == nth($flx-directions, 3) and unit($flx-margin) == "%" or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
-                    @warn "flx-grid warn: percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
+                    @warn "flx-grid warn/ percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
                 }
             }
         }
     } @else {
-        @error "flx-grid error: flx-item width undefined";
+        @error "flx-grid error/ flx-item width undefined";
     }
 }
 
@@ -175,6 +175,6 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
             margin-#{$flx-last}: 0;
         }
     } @else {
-        @warn "flx-grid warn: flx-last only nessesary in gird mode";
+        @warn "flx-grid warn/ flx-last only nessesary in gird mode";
     }
 }
