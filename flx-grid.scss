@@ -132,8 +132,10 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
             } @else if $flx-mode == nth($flx-modes, 2) {
                 @if nth($flx-item-helper-a, 1) == "flex" {
                    flex: 1;
-                } @else {
+                } @else if unitless(nth($flx-item-helper-a, 1)){
                     flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+                } @else {
+                    flex-basis: nth($flx-item-helper-a, 1);
                 }
             }
         }
