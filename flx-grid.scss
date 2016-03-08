@@ -80,21 +80,39 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
     flex-wrap: wrap;
 }
 
+
 // 3.2 item
 @mixin flx-item($flx-var: null) { // shift?
     @if $flx-var {
-        @each $var in $flx-var {
-            @if $var == "flex" {
-                $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+
+        @if $flx-mode == nth($flx-modes, 1) {
+            @each $var in $flx-var {
+               @if type-of($var) == number {
+                    @if unitless($var) {
+                        $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+                    } @else {
+                        $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
+                    }
+                }
             }
-            @if type-of($var) == number {
-                @if unitless($var) {
+        } @else if $flx-mode == nth($flx-modes, 2) {
+            $first: true;
+            @each $var in $flx-var {
+                @if $first {
                     $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+                    $first: false;
                 } @else {
-                    $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
+                    @if type-of($var) == number {
+                        @if unitless($var) {
+                            $flx-item-helper-a: append($flx-item-helper-a, $var, 'comma') !global;
+                        } @else {
+                            $flx-item-helper-b: append($flx-item-helper-b, $var, 'comma') !global;
+                        }
+                    }
                 }
             }
         }
+
         @if length($flx-item-helper-a) >= 2 {
             $flx-units: nth($flx-item-helper-a, 2) !global;
         }
@@ -104,20 +122,28 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                 $flx-margin-b: nth($flx-item-helper-b, 2) !global;
             }
         }
-        @if nth($flx-item-helper-a, 1) == "flex" {
-            flex: 1;
-        } @else if nth($flx-item-helper-a, 1) == 0 {
+
+        @if nth($flx-item-helper-a, 1) == 0 {
             display: none;
             margin: 0;
         } @else {
             @if $flx-mode == nth($flx-modes, 1) {
                 flex-basis: flx-calc(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
             } @else if $flx-mode == nth($flx-modes, 2) {
+<<<<<<< HEAD
                 flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
             } @else {
                 @error "flx-grid error/ flx-mode '#{$flx-mode}' unknown"; // fliegt nicht auf die fresse da die variable gar nicht geschrieben wird
+=======
+                @if nth($flx-item-helper-a, 1) == "flex" {
+                   flex: 1;
+                } @else {
+                    flex-basis: flx-calc-experimental(nth($flx-item-helper-a, 1), $flx-units, $flx-margin);
+                }
+>>>>>>> dev
             }
         }
+
         @for $i from 1 through length($flx-directions) {
             @if $flx-direction == nth($flx-directions, $i) {
                 margin: 0;
@@ -130,7 +156,11 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                     }
                 }
                 @if $flx-direction == nth($flx-directions, 3) and unit($flx-margin) == "%" or $flx-direction == nth($flx-directions, 4) and unit($flx-margin) == "%" {
+<<<<<<< HEAD
                     @warn "flx-grid warn/ percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
+=======
+                    @warn "flx-grid warn: percentage margin combined with '#{nth($flx-directions, 3)}' or '#{nth($flx-directions, 4)}' brokes grid";
+>>>>>>> dev
                 }
             }
         }
