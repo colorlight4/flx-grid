@@ -1,8 +1,10 @@
 # flx-grid.scss
 A small flexbox based grid system.
 
+[![GitHub version](https://badge.fury.io/gh/colorlight4%2Fflx-grid.scss.svg)](https://badge.fury.io/gh/colorlight4%2Fflx-grid.scss) |
+
 - **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**
-- ~~Documentation~~ *(coming soon)*
+- ~~Documentation~~ *(coming soon, maybe)*
 
 ## Features:
 
