@@ -1,13 +1,16 @@
 # flx-grid.scss
 A small flexbox based grid system.
 
-- **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**
-- ~~Documentation~~ *(coming soon)*
+[![GitHub release](https://img.shields.io/github/release/colorlight4/flx-grid.scss.svg)](https://github.com/colorlight4/flx-grid.scss)  [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid.scss/master/LICENSE)
+
+- **[Quick Start](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**
+- ~~Documentation~~ *(coming soon, sort of)*
 
 ## Features:
 
-- grid mode (classical grid calculator, read the **[Quick Start Guide](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**)
+- grid mode (classical grid calculator, read the **[Quick Start](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**)
 - experimental mode (*caution: safety not guaranteed* - supports relative, fix & flexible item widths)
+- "fancy" arguments
 - nested grids
 - variable flow directions
 - scalable number of gird columns
@@ -18,7 +21,7 @@ A small flexbox based grid system.
 - [flexbox support](http://caniuse.com/#search=flex)
 - [calc() support](http://caniuse.com/#search=calc)
 
-## Quick Start Guide
+## Quick Start
 
 #####Default values:
 - 12 columns per container
@@ -36,11 +39,11 @@ Notice that, because of the nature of flexbox, every element that shall contain 
 Compiled CSS:
 ```css
 .container {
-  display: flex;
-  flex-wrap: wrap;
   box-sizing: border-box;
-  flex-direction: row;
   direction: ltr;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 ```
 #### Item
@@ -56,7 +59,9 @@ Compiled CSS:
 ```css
 .item {
   flex-basis: calc(25% - 7.5px);
-  margin: 0 10px 10px 0;
+  margin:          0px;
+  margin-right:   10px;
+  margin-bottom:  10px;
 }
 ```
 #### Last
