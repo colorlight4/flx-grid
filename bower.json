@@ -1,18 +1,19 @@
 {
   "name": "flx-grid-scss",
+  "description": "a small flexbox based grid system",
   "homepage": "https://github.com/colorlight4/flx-grid-scss",
   "authors": [
     "Felix Kalkuhl <felix@kalkuhl.net>"
   ],
-  "description": "a small flexbox based grid system",
   "main": "flx-grid.scss",
-  "moduleType": [],
+  "keywords": [
+    "scss",
+    "grid",
+    "flexbox",
+    "css"
+  ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "**/.*"
   ]
 }
