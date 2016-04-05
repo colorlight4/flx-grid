@@ -196,6 +196,8 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 - flx-units
 - flx-direction
 - flx-mode
+- flx-margin
+- flx-margin-b
 
 -
 
@@ -231,11 +233,11 @@ This means the order in wich the arguments are given to the mixin only depends o
 
 Examples:
 ```scss
-@include flx-container(14 column);
-// 14 = flx-units, column = flx-direction
+@include flx-container(14 column 20px);
+// 14 = flx-units, column = flx-direction, 20px = flx-margin
 
-@include flx-container(column 12 experimental);
-// column = flx-direction, 12 = flx-units, experimental = flx-mode
+@include flx-container(20px column 12 experimental);
+// 20px = flx-margin, column = flx-direction, 12 = flx-units, experimental = flx-mode
 
 // (both perfectly valid)
 ```
@@ -243,7 +245,7 @@ Examples:
 ```scss
 @include flx-item(20px 1 14);
 // 20px = flx-margin, 1 = flx-width, 14 = flx-units
-(valid)
+// (valid)
 
 @include flx-item(14 1);
 // 14 = flx-width, 1 = flx-units
