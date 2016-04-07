@@ -113,9 +113,8 @@ Compiled CSS:
 -
 
 #### flx-mode
-|:-|:-|
-| type | keyword |
-| initial | grid |
+*type:* keyword <br>
+*default:* grid
 
 **grid** - classical grid calculator <br>
 **experimental** - supports relative, fix & flexible item widths, but might be buggy
@@ -123,9 +122,8 @@ Compiled CSS:
 -
 
 #### flx-direction
-|:-|:-|
-| type | keyword |
-| initial | row |
+*type:* keyword <br>
+*default:* row
 
 Defines the direction and axis of the grid flow.
 Is equal to the flex-direction property (- fixed to ltr).
@@ -135,18 +133,16 @@ Is equal to the flex-direction property (- fixed to ltr).
 -
 
 #### flx-units
-|:-|:-|
-| type | number |
-| initial | 12 |
+*type:* number <br>
+*default:* 12
 
 Defines the number of columns (or rows) within the grid.
 
 -
 
 #### flx-width
-|:-|:-|
-| type | number, length & percentage or keyword |
-| initial | undefined |
+*type:* number, length & percentage or keyword <br>
+*default:* undefined (have to be defined as argument)
 
 Defines the number of columns a item spans.
 
@@ -157,9 +153,8 @@ Defines the number of columns a item spans.
 -
 
 ##### flx-margin
-|:-|:-|
-| type | length & percentage |
-| initial | 10px |
+*type:* length & percentage <br>
+*default:* 10px
 
 Defines the margin between two grid items, in direction of grid flow (direction). All valid margin values works.
 
@@ -168,19 +163,16 @@ Defines the margin between two grid items, in direction of grid flow (direction)
 -
 
 ##### flx-margin-b
-|:-|:-|
-| type | length & percentage |
-| initial | undefined ( - equals flx-margin if undefined) |
+*type:* length & percentage <br>
+*default:* undefined ( - equals flx-margin if undefined)
 
 Defines the margin between two grid items, parallel to direction of grid flow (direction). All valid margin values works.
 
 -
 
 ##### flx-last
-|:-|:-|
-| type | number & keyword |
-| initial | undefined |
-
+*type:* number & keyword <br>
+*default:* undefined
 
 Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid :nth-child() values works.
 
