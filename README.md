@@ -87,7 +87,6 @@ Compiled CSS:
 
 ## Documentation
 1. values
-	- seperation
 	- methodical 
 		- flx-mode
 		- flx-direction
@@ -102,26 +101,21 @@ Compiled CSS:
 	- flx-item
 	- flx-last
 3. the *fancy* arguments concept
-4. prefixes
+4. seperation
+5. prefixes
 
 ### values
--
-### seperation
-Because of the fancy arguments concept arguments may not be separated with a comma. 
 
-Example:
-```scss
-@include flx-container(14 column);
-// (valid)
-
-@include flx-container(12, experimental);
-// (invalid)
-```
 -
+
 ### methodical
+
+-
+
 #### flx-mode
-*type:* keyword <br>
-*default:* grid
+|:-|:-|
+| type | keyword |
+| initial | grid |
 
 **grid** - classical grid calculator <br>
 **experimental** - supports relative, fix & flexible item widths, but might be buggy
@@ -129,26 +123,30 @@ Example:
 -
 
 #### flx-direction
-*type:* keyword <br>
-*default:* row
+|:-|:-|
+| type | keyword |
+| initial | row |
 
 Defines the direction and axis of the grid flow.
 Is equal to the flex-direction property (- fixed to ltr).
 
+### direct
+
 -
 
-### direct
 #### flx-units
-*type:* number <br>
-*default:* 12
+|:-|:-|
+| type | number |
+| initial | 12 |
 
 Defines the number of columns (or rows) within the grid.
 
 -
 
 #### flx-width
-*type:* number, length & percentage or keyword <br>
-*default:* undefined (have to be defined as argument)
+|:-|:-|
+| type | number, length & percentage or keyword |
+| initial | undefined |
 
 Defines the number of columns a item spans.
 
@@ -159,8 +157,9 @@ Defines the number of columns a item spans.
 -
 
 ##### flx-margin
-*type:* length & percentage <br>
-*default:* 10px
+|:-|:-|
+| type | length & percentage |
+| initial | 10px |
 
 Defines the margin between two grid items, in direction of grid flow (direction). All valid margin values works.
 
@@ -169,16 +168,19 @@ Defines the margin between two grid items, in direction of grid flow (direction)
 -
 
 ##### flx-margin-b
-*type:* length & percentage <br>
-*default:* undefined ( - equals flx-margin if undefined)
+|:-|:-|
+| type | length & percentage |
+| initial | undefined ( - equals flx-margin if undefined) |
 
 Defines the margin between two grid items, parallel to direction of grid flow (direction). All valid margin values works.
 
 -
 
 ##### flx-last
-*type:* number <br>
-*default:* undefined
+|:-|:-|
+| type | number & keyword |
+| initial | undefined |
+
 
 Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid :nth-child() values works.
 
@@ -207,7 +209,7 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 ```
 *grid element mixin* - declare a element as a grid item and defines the number of columns it should span.
 
-**reqiered arguments:**
+**required arguments:**
 - flx-width
 
 **possible arguments:**
@@ -251,6 +253,21 @@ Examples:
 // 14 = flx-width, 1 = flx-units
 // (breaks because 14 becomes fix-width)
 ```
+
+-
+
+### seperation
+Because of the fancy arguments concept arguments may not be separated with a comma. 
+
+Example:
+```scss
+@include flx-container(14 column);
+// (valid)
+
+@include flx-container(12, experimental);
+// (invalid)
+```
+
 -
 
 #### Prefixes
