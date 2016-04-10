@@ -127,8 +127,11 @@ Compiled CSS:
 
 Defines the direction and axis of the grid flow.
 Is equal to the flex-direction property (- fixed to ltr).
+
 - 
+
 ### mathematic
+
 -
 
 #### flx-units
