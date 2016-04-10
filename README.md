@@ -90,7 +90,7 @@ Compiled CSS:
 	- methodical 
 		- flx-mode
 		- flx-direction
-	- direct
+	- mathematic
 		- flx-units
 		- flx-width
 		- flx-margin
@@ -127,9 +127,8 @@ Compiled CSS:
 
 Defines the direction and axis of the grid flow.
 Is equal to the flex-direction property (- fixed to ltr).
-
-### direct
-
+- 
+### mathematic
 -
 
 #### flx-units
@@ -177,7 +176,6 @@ Defines the margin between two grid items, parallel to direction of grid flow (d
 Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid :nth-child() values works.
 
 -
-
 ### mixins
 -
 #### flx-container
@@ -215,7 +213,7 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 ```scss
 @include flx-last();
 ```
-*“end of line“ reset mixin* - resets the margin of the item it’s given to. In `flx-mode: grid` needs to be included to the last item in each row.
+*“end of line“ reset mixin* - resets the margin of the item it’s given to. In `flx-mode: grid` needs to be included to the last item of each row.
 
 **possible arguments:**
 - flx-last
@@ -223,7 +221,7 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 -
 
 ### the fancy arguments concept
-This means the order in wich the arguments are given to the mixin only depends on the order of values with the same type and that arguments can be left out if they needn’t to be adjust.
+This means the order in wich the arguments have to be given to the mixin only depends on the order of values with the same type and that arguments can be left out if they needn’t to be adjust.
 
 Examples:
 ```scss
