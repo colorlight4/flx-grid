@@ -1,0 +1,20 @@
+{
+  "name": "flx-grid-scss",
+  "version": "1.0.2",
+  "description": "A small flexbox based grid system.",
+  "keywords": [
+    "scss",
+    "css",
+    "sass",
+    "grid",
+    "flexbox",
+    "lightweight"
+  ],
+  "author": "Felix Kalkuhl <felix@kalkuhl.net>",
+  "license": "MIT",
+  "repository": "colorlight4/flx-grid-scss",
+  "bugs": {
+    "url": "https://github.com/colorlight4/flx-grid-scss/issues"
+  },
+  "homepage": "https://github.com/colorlight4/flx-grid-scss"
+}
