@@ -19,6 +19,8 @@ A small flexbox based grid system.
 ## Install
 ```sh
 bower install flx-grid-scss
+# or 
+npm install flx-grid-scss
 ```
 
 ## Requirements
