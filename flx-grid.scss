@@ -1,4 +1,4 @@
-// flx-grid v1.0b
+// flx-grid v1.0
 //
 // 2016 by Felix Kalkuhl
 
@@ -55,18 +55,18 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
                     $flx-container-helper: append($flx-container-helper, $var, 'comma') !global;
                 }
             }
-            @each $direction in $flx-directions { // kürzer?
+            @each $direction in $flx-directions {
                 @if $var == $direction {
                     $flx-direction: $var !global;
                 }
             }
-            @each $mode in $flx-modes { // kürzer?
+            @each $mode in $flx-modes {
                 @if $var == $mode {
                     $flx-mode: $var !global;
                 }
             }
         }
-        @if length($flx-container-helper) >= 1 { //umbenennen
+        @if length($flx-container-helper) >= 1 {
             $flx-margin: nth($flx-container-helper, 1) !global;
             @if length($flx-container-helper) >= 2 {
                 $flx-margin-b: nth($flx-container-helper, 2) !global;
@@ -82,7 +82,7 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
 
 
 // 3.2 item
-@mixin flx-item($flx-var: null) { // shift?
+@mixin flx-item($flx-var: null) {
     @if $flx-var {
 
         $first: true;
@@ -103,7 +103,7 @@ $flx-direction:     nth($flx-directions, 1) !default; // default "row"
         @if length($flx-item-helper-a) >= 2 {
             $flx-units: nth($flx-item-helper-a, 2) !global;
         }
-        @if length($flx-item-helper-b) >= 1 { //re name alle listen ersteller
+        @if length($flx-item-helper-b) >= 1 {
             $flx-margin: nth($flx-item-helper-b, 1) !global;
             @if length($flx-item-helper-b) >= 2 {
                 $flx-margin-b: nth($flx-item-helper-b, 2) !global;
