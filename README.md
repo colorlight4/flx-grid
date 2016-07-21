@@ -30,7 +30,7 @@ npm install flx-grid-scss
 
 ## Quick Start
 
-##### Default values:
+#### Default values:
 - 12 columns per container
 - 10px margin between each column
 
@@ -53,6 +53,9 @@ Compiled CSS:
   flex-wrap: wrap;
 }
 ```
+
+-
+
 #### Item
 Add `flx-item` to any element to define the number of columns it should span.
 
@@ -71,6 +74,9 @@ Compiled CSS:
   margin-bottom:  10px;
 }
 ```
+
+-
+
 #### Last
 The last item in each row needs `flx-last` to reset the spacing margin.
 
@@ -86,6 +92,8 @@ Compiled CSS:
   margin-right: 0;
 }
 ```
+
+- - -
 
 ## Documentation
 1. values
