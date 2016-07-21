@@ -106,43 +106,33 @@ Compiled CSS:
 4. seperation
 5. prefixes
 
-### values
-
 -
 
-### methodical
+### 1. values
 
--
+#### methodical
 
-#### flx-mode
+##### flx-mode
 *type:* keyword <br>
 *default:* grid
 
 **grid** - classical grid calculator <br>
 **experimental** - supports relative, fix & flexible item widths, but might be buggy
 
--
-
-#### flx-direction
+##### flx-direction
 *type:* keyword <br>
 *default:* row
 
 Defines the direction and axis of the grid flow.
 Is equal to the flex-direction property (- fixed to ltr).
 
--
-
 ### mathematic
-
--
 
 #### flx-units
 *type:* number <br>
 *default:* 12
 
 Defines the number of columns (or rows) within the grid.
-
--
 
 #### flx-width
 *type:* number, length & percentage or keyword <br>
@@ -154,8 +144,6 @@ Defines the number of columns a item spans.
 
 *experimental mode:* number, length & percentage or „flex“ as keyword works. „Flex“ set an item to a self sizing flexbox. Notice that in *experimental mode* the *flx-width* must be the first argument given (to a flx-item mixin).
 
--
-
 ##### flx-margin
 *type:* length & percentage <br>
 *default:* 10px
@@ -164,15 +152,11 @@ Defines the margin between two grid items, in direction of grid flow (direction)
 
 *Notice that in „column“ and „column-reverse“ percentages break the grid*
 
--
-
 ##### flx-margin-b
 *type:* length & percentage <br>
 *default:* undefined ( - equals flx-margin if undefined)
 
 Defines the margin between two grid items, parallel to direction of grid flow (direction). All valid margin values works.
-
--
 
 ##### flx-last
 *type:* number & keyword <br>
@@ -181,9 +165,10 @@ Defines the margin between two grid items, parallel to direction of grid flow (d
 Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid :nth-child() values works.
 
 -
-### mixins
--
-#### flx-container
+
+#### 2. mixins
+
+##### flx-container
 ```scss
 @include flx-container();
 ```
@@ -196,9 +181,8 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 - flx-margin
 - flx-margin-b
 
--
 
-#### flx-item
+##### flx-item
 ```scss
 @include flx-item();
 ```
@@ -212,9 +196,8 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 - flx-margin
 - flx-margin-b
 
--
 
-#### flx-last
+##### flx-last
 ```scss
 @include flx-last();
 ```
@@ -225,7 +208,7 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 
 -
 
-### the fancy arguments concept
+### 3. the fancy arguments concept
 This means the order in wich the arguments have to be given to the mixin only depends on the order of values with the same type and that arguments can be left out if they needn’t to be adjust.
 
 Examples:
@@ -251,7 +234,7 @@ Examples:
 
 -
 
-### seperation
+### 4. seperation
 Because of the fancy arguments concept arguments may not be separated with a comma. 
 
 Example:
@@ -265,10 +248,5 @@ Example:
 
 -
 
-#### Prefixes
+#### 5. Prefixes
 flx-gird-scss dosen’t provides prefixes (e.g. `-ms-` or `-webkit-`) as it’s developed with modern sass/front-end workflows (using something like [autoprefixer](https://github.com/postcss/autoprefixer)) in mind.
-
----
-
-#### usage hints
-[![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)](http://forthebadge.com)
