@@ -110,9 +110,9 @@ Compiled CSS:
 
 ### 1. values
 
-- 
+-
 
-#### methodical
+#### *methodical*
 
 #### flx-mode
 *type:* keyword <br>
@@ -132,7 +132,7 @@ Is equal to the flex-direction property (- fixed to ltr).
 
 -
 
-### mathematic
+### *mathematic*
 
 ### flx-units
 *type:* number <br>
@@ -172,7 +172,7 @@ Defines the margin between two grid items, parallel to direction of grid flow (d
 
 -
 
-##### flx-last
+#### flx-last
 *type:* number & keyword <br>
 *default:* undefined
 
@@ -180,9 +180,9 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 
 - - -
 
-#### 2. mixins
+### 2. mixins
 
-##### flx-container
+#### flx-container
 ```scss
 @include flx-container();
 ```
@@ -197,7 +197,7 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 
 -
 
-##### flx-item
+#### flx-item
 ```scss
 @include flx-item();
 ```
@@ -213,7 +213,7 @@ Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid
 
 -
 
-##### flx-last
+#### flx-last
 ```scss
 @include flx-last();
 ```
@@ -264,5 +264,5 @@ Example:
 
 - - -
 
-#### 5. Prefixes
+### 5. Prefixes
 flx-gird-scss dosen’t provides prefixes (e.g. `-ms-` or `-webkit-`) as it’s developed with modern sass/front-end workflows (using something like [autoprefixer](https://github.com/postcss/autoprefixer)) in mind.
