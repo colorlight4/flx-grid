@@ -1,0 +1,17 @@
+# OS related
+
+*~
+*.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# common files
+
+*.log
+node_modules/
+**/.sass-cache/*

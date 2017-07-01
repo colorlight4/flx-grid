@@ -3,8 +3,8 @@ A small flexbox based grid system.
 
 [![Code Climate](https://codeclimate.com/github/colorlight4/flx-grid.scss/badges/gpa.svg)](https://codeclimate.com/github/colorlight4/flx-grid.scss) [![GitHub release](https://img.shields.io/github/release/colorlight4/flx-grid.scss.svg)](https://github.com/colorlight4/flx-grid.scss) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid.scss/master/LICENSE)
 
-- **[Quick Start](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start)**
-- **[Documentation](https://github.com/colorlight4/flx-grid.scss/#user-content-documentation)**
+- [Quick Start](#user-content-quick-start)
+- [Documentation](docs/README.md)
 
 ## Features:
 
