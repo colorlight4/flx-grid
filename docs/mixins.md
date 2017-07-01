@@ -1,6 +1,6 @@
-### 2. mixins
+# 2. mixins
 
-#### flx-container
+## flx-container
 ```scss
 @include flx-container();
 ```
@@ -15,7 +15,7 @@
 
 -
 
-#### flx-item
+## flx-item
 ```scss
 @include flx-item();
 ```
@@ -31,7 +31,7 @@
 
 -
 
-#### flx-last
+## flx-last
 ```scss
 @include flx-last();
 ```

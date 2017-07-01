@@ -1,4 +1,4 @@
-### 3. the fancy arguments concept
+# 3. the fancy arguments concept
 This means the order in wich the arguments have to be given to the mixin only depends on the order of values with the same type and that arguments can be left out if they needn’t to be adjust.
 
 Examples:
