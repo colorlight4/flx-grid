@@ -54,8 +54,6 @@ Compiled CSS:
 }
 ```
 
--
-
 ### Item
 Add `flx-item` to any element to define the number of columns it should span.
 
@@ -74,8 +72,6 @@ Compiled CSS:
   margin-bottom:  10px;
 }
 ```
-
--
 
 ### Last
 The last item in each row needs `flx-last` to reset the spacing margin.
