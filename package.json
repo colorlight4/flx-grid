@@ -1,6 +1,6 @@
 {
-  "name": "flx-grid-scss",
-  "version": "1.0.3",
+  "name": "flx-grid",
+  "version": "1.0.4",
   "description": "A small flexbox based grid system.",
   "keywords": [
     "scss",
@@ -12,9 +12,9 @@
   ],
   "author": "Felix Kalkuhl <felix@kalkuhl.net>",
   "license": "MIT",
-  "repository": "colorlight4/flx-grid-scss",
+  "repository": "colorlight4/flx-grid",
   "bugs": {
-    "url": "https://github.com/colorlight4/flx-grid-scss/issues"
+    "url": "https://github.com/colorlight4/flx-grid/issues"
   },
-  "homepage": "https://github.com/colorlight4/flx-grid-scss"
+  "homepage": "https://github.com/colorlight4/flx-grid"
 }
