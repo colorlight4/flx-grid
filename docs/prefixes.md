@@ -1,0 +1,2 @@
+# 5. Prefixes
+flx-gird-scss dosen’t provides prefixes (e.g. `-ms-` or `-webkit-`) as it’s developed with modern sass/front-end workflows (using something like [autoprefixer](https://github.com/postcss/autoprefixer)) in mind.

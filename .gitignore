@@ -13,6 +13,5 @@ Thumbs.db
 # common files
 
 *.log
-/node_modules/
-/.sass-cache/*
-/dist/
+node_modules/
+**/.sass-cache/*
