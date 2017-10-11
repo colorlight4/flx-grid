@@ -1,14 +1,14 @@
 # flx-grid
 > A small flexbox based grid system.
 
-[![Code Climate](https://codeclimate.com/github/colorlight4/flx-grid.scss/badges/gpa.svg)](https://codeclimate.com/github/colorlight4/flx-grid.scss) [![GitHub release](https://img.shields.io/github/release/colorlight4/flx-grid.scss.svg)](https://github.com/colorlight4/flx-grid.scss) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid.scss/master/LICENSE)
+[![Code Climate](https://codeclimate.com/github/colorlight4/flx-grid.scss/badges/gpa.svg)](https://codeclimate.com/github/colorlight4/flx-grid) [![GitHub release](https://img.shields.io/github/release/colorlight4/flx-grid.svg)](https://github.com/colorlight4/flx-grid) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid/master/LICENSE)
 
 - [Quick Start Guide](#user-content-quick-start-guide)
 - [Documentation](docs/readme.md)
 
 ## Features:
 
-- grid mode (classical grid calculator, read the **[Quick Start](https://github.com/colorlight4/flx-grid.scss/#user-content-quick-start-guide)**)
+- grid mode (classical grid calculator, read the **[Quick Start](https://github.com/colorlight4/flx-grid/#user-content-quick-start-guide)**)
 - experimental mode (*caution: safety not guaranteed* - supports relative, fix & flexible item widths)
 - "fancy" arguments
 - nested grids
@@ -18,9 +18,9 @@
 
 ## Install
 ```sh
-bower install flx-grid-scss
+bower install flx-grid
 # or 
-npm install flx-grid-scss
+npm install flx-grid
 ```
 
 ## Requirements

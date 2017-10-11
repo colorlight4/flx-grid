@@ -1,7 +1,7 @@
 {
   "name": "flx-grid-scss",
   "description": "a small flexbox based grid system",
-  "homepage": "https://github.com/colorlight4/flx-grid-scss",
+  "homepage": "https://github.com/colorlight4/flx-grid",
   "authors": [
     "Felix Kalkuhl <felix@kalkuhl.net>"
   ],
