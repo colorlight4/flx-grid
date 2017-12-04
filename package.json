@@ -1,5 +1,5 @@
 {
-  "name": "flx-grid",
+  "name": "grd-grid",
   "version": "1.1.0",
   "description": "A small flexbox based grid system.",
   "keywords": [
@@ -12,9 +12,9 @@
   ],
   "author": "Felix Kalkuhl <felix@kalkuhl.net>",
   "license": "MIT",
-  "repository": "colorlight4/flx-grid",
+  "repository": "colorlight4/grd-grid",
   "bugs": {
-    "url": "https://github.com/colorlight4/flx-grid/issues"
+    "url": "https://github.com/colorlight4/grd-grid/issues"
   },
-  "homepage": "https://github.com/colorlight4/flx-grid"
+  "homepage": "https://github.com/colorlight4/grd-grid"
 }

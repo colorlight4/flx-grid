@@ -1,14 +1,14 @@
-# flx-grid
+# grd
 > A small flexbox based grid system.
 
-[![Code Climate](https://codeclimate.com/github/colorlight4/flx-grid.scss/badges/gpa.svg)](https://codeclimate.com/github/colorlight4/flx-grid) [![GitHub release](https://img.shields.io/github/release/colorlight4/flx-grid.svg)](https://github.com/colorlight4/flx-grid) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid/master/LICENSE)
+[![Code Climate](https://codeclimate.com/github/colorlight4/grd-grid.scss/badges/gpa.svg)](https://codeclimate.com/github/colorlight4/grd-grid) [![GitHub release](https://img.shields.io/github/release/colorlight4/grd-grid.svg)](https://github.com/colorlight4/grd-grid) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/grd-grid/master/LICENSE)
 
 - [Quick Start Guide](#user-content-quick-start-guide)
 - [Documentation](docs/readme.md)
 
 ## Features:
 
-- grid mode (classical grid calculator, read the **[Quick Start](https://github.com/colorlight4/flx-grid/#user-content-quick-start-guide)**)
+- grid mode (classical grid calculator, read the **[Quick Start](https://github.com/colorlight4/grd-grid/#user-content-quick-start-guide)**)
 - experimental mode (*caution: safety not guaranteed* - supports relative, fix & flexible item widths)
 - "fancy" arguments
 - nested grids
@@ -18,9 +18,9 @@
 
 ## Install
 ```sh
-bower install flx-grid
+bower install grd-grid
 # or 
-npm install flx-grid
+npm install grd-grid
 ```
 
 ## Requirements
@@ -35,12 +35,12 @@ npm install flx-grid
 - 10px margin between each column
 
 ### Container
-Include the `flx-container` mixin to your container element.
-Notice that, because of the nature of flexbox, every element that shall contain grid-elements, requires `flx-container`.
+Include the `grd-container` mixin to your container element.
+Notice that, because of the nature of flexbox, every element that shall contain grid-elements, requires `grd-container`.
 
 ```scss
 .container {
-	@include flx-container;
+	@include grd-container;
 }
 ```
 Compiled CSS:
@@ -55,11 +55,11 @@ Compiled CSS:
 ```
 
 ### Item
-Add `flx-item` to any element to define the number of columns it should span.
+Add `grd-item` to any element to define the number of columns it should span.
 
 ```scss
 .item {
-	@include flx-item(3);
+	@include grd-item(3);
 }
 ```
 
@@ -74,11 +74,11 @@ Compiled CSS:
 ```
 
 ### Last
-The last item in each row needs `flx-last` to reset the spacing margin.
+The last item in each row needs `grd-last` to reset the spacing margin.
 
 ```scss
 .item.last {
-	@include flx-last;
+	@include grd-last;
 }
 ```
 

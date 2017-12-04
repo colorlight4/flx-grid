@@ -3,21 +3,21 @@ This means the order in wich the arguments have to be given to the mixin only de
 
 Examples:
 ```scss
-@include flx-container(14 column 20px);
-// 14 = flx-units, column = flx-direction, 20px = flx-margin
+@include grd-container(14 column 20px);
+// 14 = grd-units, column = grd-direction, 20px = grd-margin
 
-@include flx-container(20px column 12 experimental);
-// 20px = flx-margin, column = flx-direction, 12 = flx-units, experimental = flx-mode
+@include grd-container(20px column 12 experimental);
+// 20px = grd-margin, column = grd-direction, 12 = grd-units, experimental = grd-mode
 
 // (both perfectly valid)
 ```
 
 ```scss
-@include flx-item(20px 1 14);
-// 20px = flx-margin, 1 = flx-width, 14 = flx-units
+@include grd-item(20px 1 14);
+// 20px = grd-margin, 1 = grd-width, 14 = grd-units
 // (valid)
 
-@include flx-item(14 1);
-// 14 = flx-width, 1 = flx-units
+@include grd-item(14 1);
+// 14 = grd-width, 1 = grd-units
 // (breaks because 14 becomes fix-width)
 ```

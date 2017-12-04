@@ -3,9 +3,9 @@ Because of the fancy arguments concept arguments may not be separated with a com
 
 Example:
 ```scss
-@include flx-container(14 column);
+@include grd-container(14 column);
 // (valid)
 
-@include flx-container(12, experimental);
+@include grd-container(12, experimental);
 // (invalid)
 ```

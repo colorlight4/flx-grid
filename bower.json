@@ -1,11 +1,11 @@
 {
-  "name": "flx-grid",
+  "name": "grd",
   "description": "a small flexbox based grid system",
-  "homepage": "https://github.com/colorlight4/flx-grid",
+  "homepage": "https://github.com/colorlight4/grd",
   "authors": [
     "Felix Kalkuhl <felix@kalkuhl.net>"
   ],
-  "main": "flx-grid.scss",
+  "main": "grd.scss",
   "keywords": [
     "scss",
     "grid",

@@ -2,14 +2,14 @@
 
 ## *methodical*
 
-### flx-mode
+### grd-mode
 *type:* keyword  
 *default:* grid
 
 **grid** - classical grid calculator  
 **experimental** - supports relative, fix & flexible item widths, but might be buggy
 
-### flx-direction
+### grd-direction
 *type:* keyword  
 *default:* row
 
@@ -19,14 +19,14 @@ Is equal to the flex-direction property (- fixed to ltr).
 
 ## *mathematic*
 
-### flx-units
+### grd-units
 *type:* number  
 *default:* 12
 
 Defines the number of columns (or rows) within the grid.
 
 
-### flx-width
+### grd-width
 *type:* number, length & percentage or keyword  
 *default:* undefined (have to be defined as argument)
 
@@ -34,10 +34,10 @@ Defines the number of columns a item spans.
 
 *grid mode:* only numbers are valid
 
-*experimental mode:* number, length & percentage or „flex“ as keyword works. „Flex“ set an item to a self sizing flexbox. Notice that in *experimental mode* the *flx-width* must be the first argument given (to a flx-item mixin).
+*experimental mode:* number, length & percentage or „flex“ as keyword works. „Flex“ set an item to a self sizing flexbox. Notice that in *experimental mode* the *grd-width* must be the first argument given (to a grd-item mixin).
 
 
-### flx-margin
+### grd-margin
 *type:* length & percentage  
 *default:* 10px
 
@@ -46,15 +46,15 @@ Defines the margin between two grid items, in direction of grid flow (direction)
 *Notice that in „column“ and „column-reverse“ percentages break the grid*
 
 
-### flx-margin-b
+### grd-margin-b
 *type:* length & percentage  
-*default:* undefined ( - equals flx-margin if undefined)
+*default:* undefined ( - equals grd-margin if undefined)
 
 Defines the margin between two grid items, parallel to direction of grid flow (direction). All valid margin values works.
 
 
-### flx-last
+### grd-last
 *type:* number & keyword  
 *default:* undefined
 
-Can be given to set a :nth-child() pseudo-class to the flx-last mixin. All valid :nth-child() values works.
+Can be given to set a :nth-child() pseudo-class to the grd-last mixin. All valid :nth-child() values works.
