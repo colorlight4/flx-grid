@@ -10,7 +10,7 @@
 
 - grid mode (classical grid calculator, read the **[Quick Start](#user-content-quick-start-guide)**)
 - experimental mode (*caution: safety not guaranteed* - supports relative, fix & flexible item widths)
-- "fancy" arguments
+- "[fancy](docs/fancy-arguments.md)" arguments
 - nested grids
 - variable flow directions
 - scalable number of gird columns
