@@ -8,7 +8,7 @@
 
 ## Features:
 
-- grid mode (classical grid calculator, read the **[Quick Start](https://github.com/colorlight4/flx-grid/#user-content-quick-start-guide)**)
+- grid mode (classical grid calculator, read the **[Quick Start](#user-content-quick-start-guide)**)
 - experimental mode (*caution: safety not guaranteed* - supports relative, fix & flexible item widths)
 - "fancy" arguments
 - nested grids
@@ -46,11 +46,11 @@ Notice that, because of the nature of flexbox, every element that shall contain 
 Compiled CSS:
 ```css
 .container {
-  box-sizing: border-box;
-  direction: ltr;
-  display: flex;
+  box-sizing:     border-box;
+  direction:      ltr;
+  display:        flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap:      wrap;
 }
 ```
 
@@ -66,8 +66,8 @@ Add `flx-item` to any element to define the number of columns it should span.
 Compiled CSS:
 ```css
 .item {
-  flex-basis: calc(25% - 7.5px);
-  margin:          0px;
+  flex-basis:     calc(25% - 7.5px);
+  margin:         0px;
   margin-right:   10px;
   margin-bottom:  10px;
 }
@@ -85,6 +85,6 @@ The last item in each row needs `flx-last` to reset the spacing margin.
 Compiled CSS:
 ```css
 .item.last {
-  margin-right: 0;
+  margin-right:   0px;
 }
 ```
