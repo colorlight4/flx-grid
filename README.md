@@ -1,7 +1,7 @@
 # flx-grid
 > A small flexbox based grid system.
 
-[![GitHub release](https://img.shields.io/github/release/colorlight4/flx-grid.svg)](https://github.com/colorlight4/flx-grid) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/colorlight4/flx-grid/master/LICENSE)
 
 - [Quick Start Guide](#user-content-quick-start-guide)
 - [Documentation](docs/readme.md)
