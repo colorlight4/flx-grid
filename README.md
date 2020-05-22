@@ -40,7 +40,7 @@ Notice that, because of the nature of flexbox, every element that shall contain 
 
 ```scss
 .container {
-	@include flx-container;
+  @include flx-container;
 }
 ```
 Compiled CSS:
@@ -59,7 +59,7 @@ Add `flx-item` to any element to define the number of columns it should span.
 
 ```scss
 .item {
-	@include flx-item(3);
+  @include flx-item(3);
 }
 ```
 
@@ -78,7 +78,7 @@ The last item in each row needs `flx-last` to reset the spacing margin.
 
 ```scss
 .item.last {
-	@include flx-last;
+  @include flx-last;
 }
 ```
 
